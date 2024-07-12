@@ -11,6 +11,7 @@
   box-sizing: border-box;
 }
 
+/*logo, step, mebubar */
 .top{
   display: flex;
   margin-bottom: 70px;
@@ -18,6 +19,7 @@
   align-items: center;
 }
 
+/*logo*/
 .top .logo{
   margin-left: -12%;
   margin-top: -23%;
@@ -31,18 +33,21 @@
   opacity: 1;
 }
 
+/*step1, step2, step3, car, step bar*/
 .top .top-center{
   display: block;
   margin-top: -22%;
   margin-right: 7%;
 }
 
+/*step1, step2, step3*/
 .top .top-center .step{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/*step1*/
 .top .top-center .step .step1{
   width: 50px;
   height: 20px;
@@ -54,6 +59,7 @@
   opacity: 0.5;
 }
 
+/*step2*/
 .top .top-center .step .step2{
   width: 50px;
   height: 20px;
@@ -66,6 +72,7 @@
   opacity: 1;
 }
 
+/*step3*/
 .top .top-center .step .step3{
   width: 50px;
   height: 20px;
@@ -77,7 +84,8 @@
   opacity: 0.5;
 }
 
-.top .top-center .var .step-line{
+/*현재 진행한 stepbar*/
+.top .top-center .bar .step-line{
   position: relative;
   top: 5px;
   width: 90%;
@@ -86,24 +94,18 @@
   opacity: 1;
 }
 
-.top .top-center .var .all-line{
+/*전체 진행 stepbar*/
+.top .top-center .bar .all-line{
   border: 3px solid #7E7E7E;
   width: 140%;
   margin-left: -40px;
   opacity: 0.4;
 }
 
+/*menubar*/
 .top .menu-bar{
   margin-top: -23%;
   margin-right: -9.7%;
-}
-
-button{
-  border: none;
-  outline: none;
-  background-color: transparent;
-  padding: 0;
-  cursor: pointer;
 }
 
 body{
@@ -113,6 +115,7 @@ body{
   min-height: 100vh;
 }
 
+/*캘린더 전체 */
 .cal{
   display: block;
   width: 940px;
@@ -124,10 +127,12 @@ body{
   opacity: 1;
 }
 
+/*두개의 달력 표현*/
 .cal .calendar{
   display: flex;
 }
 
+/*한 개의 달력 전체*/
 .wrapper{
   width: 450px;
   background: #fff;
@@ -135,6 +140,7 @@ body{
   padding: 25px;
 }
 
+/* 년 월, < > 버튼*/
 .wrapper .nav{
   display: flex;
   align-items: center;
@@ -142,6 +148,7 @@ body{
   margin-bottom: 30px;
 }
 
+/*첫 번째 달력의 년 월*/
 .wrapper .nav .current-date{
   margin-right:150px;
   text-align: center;
@@ -153,6 +160,7 @@ body{
   opacity: 1;
 }
 
+/*두 번째 달력의 년 월*/
 .wrapper .nav .current-date1{
   margin-left:150px;
   text-align: center;
@@ -164,26 +172,38 @@ body{
   opacity: 1;
 }
 
+/* < > 버튼*/
 .wrapper .nav button{
   width: 38px;
   height: 38px;
   font-size: 30px;
-  color: #707070; 
+  color: #707070;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
 }
 
+/*달력 속 요일 전체 및 일 전체*/
 .month ul{
   display: flex;
   list-style: none;
   flex-wrap: wrap;
   text-align: center;
 }
+
+/*달력 속 요일*/
 .month .weeks li{
   font-weight: 500;
 }
+
+/*달력 속 일*/
 .month .days{
   margin-bottom: 20px;
 }
 
+/*달력 속 각 요일 및 각 일*/
 .month ul li{
   width: calc(100% / 7);
   font-family: "Noto Sans KR", sans-serif;
@@ -191,25 +211,25 @@ body{
   color:#707070;
 }
 
+/*달력 속 각 일*/
 .month .days li{
   z-index: 1;
-  margin-top: 30px;
+  margin-top: 28px;
   cursor: pointer;
   color: #707070;
 }
 
+/*달력 시작 일 전 일들 및 달력 끝나고 남은 일들*/
 .days li.inactive {
   color: #aaa;
 }
 
+/*달력 시작 일 전 일들 및 달력 끝나고 남은 일들 호버 시*/
 .days li.inactive:hover::before{
   background: #fff;
 }
 
-.days liactive{
-  color: #fff;
-}
-
+/*달력의 전체 일*/
 .month .days li::before{
   position: absolute;
   content: '';
@@ -222,10 +242,12 @@ body{
   z-index: -1;
 }
 
+/*달력 일에 호버 시나오는 색상*/
 .days li:hover::before{
   background: #C5E9FF;
 }
 
+/*전체 캘린더에서 달력 아래에 나오는 선*/
 .cal .line{
   border: 1px solid #EEEEEE;
   width:98%;
@@ -234,16 +256,21 @@ body{
   margin-top: 10px;
 }
 
+/*선택 된 일들 및 선택 버튼*/
 .cal .correct{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/*선택 버튼*/
 .cal .correct .select{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #3E3E3E;
+  border: 0px;
   border-radius: 5px;
   width: 119px;
   height: 48px;
@@ -252,12 +279,14 @@ body{
   margin-top: 14px;
 }
 
+/*이전 버튼 및 다음 버튼*/
 .last{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/*이전 버튼 전체*/
 .last .prev{
   display: flex;
   justify-content: space-between;
@@ -273,6 +302,7 @@ body{
   margin-top: 11%;
 }
 
+/*이전 버튼*/
 .last .prev .prev-button{
   margin-right: 30px;
   width: 72px;
@@ -286,6 +316,7 @@ body{
   opacity: 1;
 }
 
+/*다음 버튼*/
 .last .next{
   display: flex;
   justify-content: space-between;
@@ -301,6 +332,7 @@ body{
   margin-top: 11%;
 }
 
+/*다음 버튼*/
 .last .next .next-button{
   margin-left: 30px;
   width: 72px;

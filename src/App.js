@@ -64,7 +64,7 @@ function App() {
     const totalDays = days.length;
     //35(5주 * 7일)일을 기준으로 생성된 일 수 차감
     const remainingDays = 35 - totalDays; // 35 = 5 weeks * 7 days
-    //현재 달력이 끝나는 마지막 날 +` ~ 토요일까지 빈칸 생성
+    //현재 달력이 끝나는 마지막 날 + ~ 토요일까지 빈칸 생성
     for (let i = 1; i <= remainingDays; i++) {
       days.push(<li key={`inactive-next-${i}`} className="inactive"></li>);
     }
@@ -101,6 +101,7 @@ function App() {
 
   return (
     <div className="App">
+      {/*로고, 스텝, 메뉴바*/}
       <div className = "top">
         <div className ="logo">
           <p>LOGO</p>
@@ -115,7 +116,7 @@ function App() {
             <span className = "loadingcar">
               <FontAwesomeIcon icon={faCarSide} style = {{color: "#5E5E5E", width: "20px", height: "14px", marginBottom: "-9px"}}/>
             </span>
-            <div className = "var">
+            <div className = "bar">
               <hr className = "step-line"></hr>
               <hr className = "all-line"></hr>
             </div>
@@ -125,6 +126,7 @@ function App() {
           <FontAwesomeIcon icon={faBars} size= "xl" className = "fa-bars" style = {{color: "#707070"}}/>
         </div>
       </div>
+      {/*캘린더*/}
       <div className="cal">
         <div className="calendar">
           <div className="wrapper">
@@ -179,11 +181,12 @@ function App() {
           <div className = "trip-date">
 
           </div>
-          <div className = "select">
-            <p>선택</p>
+          <div>
+            <button className = "select">선택</button>
           </div>
         </div>
       </div>
+      {/*이전 버튼, 다음 버튼*/}
       <div className = "last">
         <button className = "prev">
           <span className="material-icons" style={{color: "#707070", marginLeft: "20px", fontSizeAdjust: "40px"}}>
