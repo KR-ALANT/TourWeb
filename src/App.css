@@ -108,6 +108,14 @@
   margin-right: -9.7%;
 }
 
+button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
 body{
   display: flex;
   align-items: center;
@@ -221,7 +229,7 @@ body{
 
 /*달력 시작 일 전 일들 및 달력 끝나고 남은 일들*/
 .days li.inactive {
-  color: #aaa;
+  color: #c6c4c4;
 }
 
 /*달력 시작 일 전 일들 및 달력 끝나고 남은 일들 호버 시*/
@@ -312,7 +320,7 @@ body{
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.54px;
-  color: #5E5E5E;
+  color: #131313;
   opacity: 1;
 }
 
@@ -345,3 +353,4 @@ body{
   color: #5E5E5E;
   opacity: 1;
 }
+

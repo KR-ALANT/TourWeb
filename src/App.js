@@ -1,7 +1,7 @@
-import { faCarSide } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from 'react';
+import { faCarSide } from '@fortawesome/free-solid-svg-icons'; //faCarSide 이미지 불러오기
+import { faBars } from '@fortawesome/free-solid-svg-icons'; //faBars 이미지 불러오기
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //FontAwesomeIcon 이미지 불러오기
+import React, { useState } from 'react'; // useState 사용
 import './App.css';
 
 function App() {
@@ -29,8 +29,17 @@ function App() {
 
     // 현재 달력 날짜 생성
     for (let i = 1; i <= lastDateOfMonth; i++) {
-      days.push(<li key={i}>{i}</li>);
+      // i값을 사용하여 현재 연도와 월의 i 번쨰 날짜 생성
+      const currentDate = new Date(currYear, currMonth, i);
+      // currentDate가 오늘 날짜의 자정 이전인지 확인
+      const isPast = currentDate < new Date().setHours(0, 0, 0, 0);
+      days.push(
+        <li key={i} className={isPast ? 'inactive' : ''}>
+          {i}
+        </li>
+      );
     }
+
     // 그 달의 길이 만큼 일 수 생성
     const totalDays = days.length;
     //35(5주 * 7일)일을 기준으로 생성된 일 수 차감
@@ -60,6 +69,7 @@ function App() {
     for (let i = 1; i <= lastDateOfMonth; i++) {
       days.push(<li key={i}>{i}</li>);
     }
+
     // 그 달의 길이 만큼 일 수 생성
     const totalDays = days.length;
     //35(5주 * 7일)일을 기준으로 생성된 일 수 차감
@@ -73,7 +83,7 @@ function App() {
   };
 
   //이전 달로 이동
-  const handlePrevMonth = () => {
+  const PrevMonth = () => {
     //currMonth가 0일 때 이전 념도로 넘어감
     if (currMonth === 0) {
       setCurrYear(currYear - 1);
@@ -84,7 +94,7 @@ function App() {
   };
 
   //다음 달로 이동
-  const handleNextMonth = () => {
+  const NextMonth = () => {
     //currMonth가 11일 때 다음 년도로 넘어감
     if (currMonth === 11) {
       setCurrYear(currYear + 1);
@@ -98,6 +108,8 @@ function App() {
   const nextMonth = currMonth === 11 ? 0 : currMonth + 1;
   // 다음다로 넘어갈 때 현재 달이 11이면 현재 년도 + 1 아니면 현재 년도를 nextYear에 대입
   const nextYear = currMonth === 11 ? currYear + 1 : currYear;
+
+
 
   return (
     <div className="App">
@@ -132,7 +144,7 @@ function App() {
           <div className="wrapper">
             <header>
               <div className="nav">
-                <button className="material-icons" onClick={handlePrevMonth}>chevron_left</button>
+                <button className="material-icons" onClick={PrevMonth}>chevron_left</button>
                 <p className="current-date">{currYear}년 {months[currMonth]}</p>
               </div>
             </header>
@@ -155,7 +167,7 @@ function App() {
             <header>
               <div className="nav">
                 <p className="current-date1">{nextYear}년 {months[nextMonth]}</p>
-                <button className="material-icons" onClick={handleNextMonth}>chevron_right</button>
+                <button className="material-icons" onClick={NextMonth}>chevron_right</button>
               </div>
             </header>
             <div className="month">
@@ -189,7 +201,7 @@ function App() {
       {/*이전 버튼, 다음 버튼*/}
       <div className = "last">
         <button className = "prev">
-          <span className="material-icons" style={{color: "#707070", marginLeft: "20px", fontSizeAdjust: "40px"}}>
+          <span className="material-icons" style={{color: "#131313", marginLeft: "20px", fontSizeAdjust: "40px"}}>
             chevron_left
           </span>
           <p className = "prev-button">
