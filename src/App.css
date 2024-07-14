@@ -118,6 +118,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 160vh;
   min-height: 100vh;
 }
 
