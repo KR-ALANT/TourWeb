@@ -1,0 +1,82 @@
+.main-page {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black; /* 이미지 투명도를 위한 배경색 설정 */
+  }
+  
+  .slideshow-image {
+    max-width: 100%;
+    max-height: 100%;
+    transition: opacity 2s ease-in-out;
+    object-fit: cover;
+  }
+  
+  .start-button {
+    position: absolute;
+    bottom: 265px; /* 버튼 위치 조정 */
+    left: 51%;
+    transform: translateX(-50%); /* 자신의 너비의 절반만큼 왼쪽으로 이동하여 중앙 정렬 */
+    background-color: rgba(255, 255, 255, 0.6); /* 흰색과 투명 사이의 배경색 */
+    color: #000; /* 버튼 텍스트 색상 */
+    height: 180px;
+    width: 180px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 10;
+    opacity: 0; /* 초기 상태에서 버튼을 숨김 */
+    transition: opacity 3s ease-in-out; /* 투명도 전환을 서서히 설정 */
+  }
+  
+  .start-button.visible {
+    opacity: 1; /* 버튼이 나타나는 상태 */
+  }
+  
+  .start-button:hover {
+    background-color: rgba(255, 255, 255, 0.9); /* 호버 시 배경색 조정 */
+    color: #000; /* 호버 시 텍스트 색상 조정 */
+  }
+  
+  .top-right-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  
+  .top-right-buttons button {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff; /* 버튼 텍스트 색상 흰색으로 설정 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .top-right-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* 호버 시 배경색 조정 */
+  }
+  
+  /* 여기에 로고 스타일을 추가합니다 */
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff; /* 로고 텍스트 색상 흰색으로 설정 */
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .logo:hover {
+    color: #ccc; /* 로고 호버 시 색상 조정 */
+  }
