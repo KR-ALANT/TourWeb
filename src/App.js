@@ -1,12 +1,18 @@
 import React from 'react';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './main/MainPage';
 import Calendar from './calendar/Calendar';
+import Map from './map/Map';
 
 function App() {
   return (
-    <div className="App">
-      <Calendar />
-    </div>
+    <Routes>
+      <Route path = "/" element = {<MainPage />} />
+      <Route path = "/main/MainPage" element = {<MainPage />} />
+      <Route path = "/calendar/Calendar" element = {<Calendar />} />
+      <Route path = "/map/Map" element = {<Map />} />
+    </Routes>
   );
 }
 
