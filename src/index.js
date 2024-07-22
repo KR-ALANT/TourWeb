@@ -10,6 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
     <App />
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fd04ffb6fb0d0a70a543375b9aee9601"></script>
     </BrowserRouter>
 );
 

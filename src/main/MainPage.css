@@ -42,6 +42,7 @@
   color: #000; /* 호버 시 텍스트 색상 조정 */
 }
 
+/*커뮤니티, 마이페이지, 로그인 전체*/
 .top-right-buttons {
   position: absolute;
   top: 20px;
@@ -51,10 +52,13 @@
   z-index: 2;
 }
 
+/*커뮤니티, 마이페이지, 로그인 각각*/
 .top-right-buttons button {
   padding: 10px 20px;
   background-color: transparent;
   color: #fff; /* 버튼 텍스트 색상 흰색으로 설정 */
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;

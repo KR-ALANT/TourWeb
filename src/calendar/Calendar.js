@@ -192,14 +192,14 @@ function Calendar() {
   }
 
   const MPage = () => {
-    navigate('../main/MainPage')
+    navigate('/')
   }
 
   return (
     <div className="CalendarPage">
       {/*로고, 이전 버튼*/}
       <div className = "left">
-          <button className = "logo" onClick={MPage}>LOGO</button>
+        <button className = "logo" onClick={MPage}>LOGO</button>
         <button className = "prev">
           {/*material-icon 중 chevron_left를 클릭시 이전 페이지로 이동*/}
           <span className="material-icons" style={{color: "#131313", marginLeft: "20px", fontSize: "30px"}}>
@@ -212,7 +212,6 @@ function Calendar() {
       </div>
       <div className = "center">  
         <div className = "top-center">
-          <div>
             <div className="step">
               <p className = "step1">STEP1</p>
               <p className = "step2">STEP2</p>
@@ -220,13 +219,12 @@ function Calendar() {
             </div>
             <span className = "loadingcar">
               {/*FontAwesomeIcon에서 faCarSide를 출력 */}
-              <FontAwesomeIcon icon={faCarSide} style = {{color: "#5E5E5E", width: "20px", height: "14px", marginBottom: "-9px"}}/>
+              <FontAwesomeIcon icon={faCarSide} style = {{color: "#5E5E5E", width: "20px", height: "14px", marginLeft: "110px",marginBottom: "-9px"}}/>
             </span>
             <div className = "bar">
               <hr className = "step-line"></hr>
               <hr className = "all-line"></hr>
             </div>
-          </div>
         </div>
         {/*캘린더*/}
         <div className="cal">

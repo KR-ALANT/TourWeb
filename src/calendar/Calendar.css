@@ -42,8 +42,8 @@ body{
   display: flex;
   text-align: center;
   align-items: center;
-  bottom: 20px; /* 버튼 위치 조정 */
-  left: 20px;
+  bottom: 10%; /* 버튼 위치 조정 */
+  left: 10%;
   width: 218px;
   height: 58px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -68,11 +68,10 @@ body{
 /*step1, step2, step3, car, step bar*/
 .center .top-center{
   position: absolute;
-  top: 20px;
-  left: 41%;
+  margin-left: 330px;
+  top: 3.3%;
 }
 
-/*step1, step2, step3*/
 .center .top-center .step{
   display: flex;
   justify-content: space-between;
@@ -85,7 +84,6 @@ body{
   height: 20px;
   margin-right: 40px;
   text-align: center;
-  font-family: "Noto Sans KR", sans-serif;
   letter-spacing: 2.1px;
   color: #3E3E3E;
   opacity: 0.5;
@@ -96,8 +94,7 @@ body{
   width: 50px;
   height: 20px;
   text-align: center;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 600;
+  font-weight: bold;
   font-style: medium;
   letter-spacing: 2.1px;
   color: #3E3E3E;
@@ -110,7 +107,6 @@ body{
   height: 20px;
   margin-left: 40px;
   text-align: center;
-  font-family: "Noto Sans KR", sans-serif;
   letter-spacing: 2.1px;
   color: #3E3E3E;
   opacity: 0.5;
@@ -170,7 +166,6 @@ body{
 .wrapper .nav .curr-date{
   margin-right:150px;
   text-align: center;
-  font-family: "Noto Sans KR", sans-serif;
   font-size: 1.5rem;
   font-weight: 900;
   letter-spacing: 0px;
@@ -182,7 +177,6 @@ body{
 .wrapper .nav .curr-date1{
   margin-left:150px;
   text-align: center;
-  font-family: "Noto Sans KR", sans-serif;
   font-size: 1.5rem;
   font-weight: 900;
   letter-spacing: 0px;
@@ -221,7 +215,6 @@ body{
 /*달력 속 모든 ul, li 태그*/
 .month ul li {
   width: calc(100% / 7);
-  font-family: "Noto Sans KR", sans-serif;
   position: relative;
   color: #707070;
   height: 40px; /* 모든 li 요소의 높이를 동일하게 설정 */
@@ -285,7 +278,6 @@ body{
   border-radius: 10px; /* 선택된 날짜의 모서리 곡률 */
 }
 
-
 /*전체 캘린더에서 달력 아래에 나오는 선*/
 .cal .line{
   border: 1px solid #EEEEEE;
@@ -309,7 +301,6 @@ body{
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: "Noto Sans KR", sans-serif;
   font-size: 1.2rem;
   letter-spacing: 0.45px;
   color: #707070;
@@ -369,8 +360,8 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  bottom: 20px; /* 버튼 위치 조정 */
-  right: 20px;
+  bottom: 10%; /* 버튼 위치 조정 */
+  right: 10%;
   width: 218px;
   height: 58px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -392,7 +383,6 @@ body{
   width: 72px;
   height: 26px;
   text-align: left;
-  font-family: "Noto Sans KR", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.54px;

@@ -9,7 +9,6 @@ function App() {
   return (
     <Routes>
       <Route path = "/" element = {<MainPage />} />
-      <Route path = "/main/MainPage" element = {<MainPage />} />
       <Route path = "/calendar/Calendar" element = {<Calendar />} />
       <Route path = "/map/Map" element = {<Map />} />
     </Routes>
