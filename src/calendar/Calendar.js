@@ -195,12 +195,16 @@ function Calendar() {
     navigate('/')
   }
 
+  const LPage = () =>{
+    navigate("../local/Local")
+  }
+
   return (
     <div className="CalendarPage">
       {/*로고, 이전 버튼*/}
       <div className = "left">
         <button className = "logo" onClick={MPage}>LOGO</button>
-        <button className = "prev">
+        <button className = "prev" onClick = {LPage}>
           {/*material-icon 중 chevron_left를 클릭시 이전 페이지로 이동*/}
           <span className="material-icons" style={{color: "#131313", marginLeft: "20px", fontSize: "30px"}}>
             chevron_left

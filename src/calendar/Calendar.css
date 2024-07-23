@@ -42,8 +42,8 @@ body{
   display: flex;
   text-align: center;
   align-items: center;
-  bottom: 10%; /* 버튼 위치 조정 */
-  left: 10%;
+  bottom: 5%; /* 버튼 위치 조정 */
+  left: 5%;
   width: 218px;
   height: 58px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -360,8 +360,8 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  bottom: 10%; /* 버튼 위치 조정 */
-  right: 10%;
+  bottom: 5%; /* 버튼 위치 조정 */
+  right: 5%;
   width: 218px;
   height: 58px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
