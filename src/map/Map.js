@@ -58,12 +58,14 @@ function Map(){
                             <hr className = "all-line0"></hr>
                         </div>
                     </div>
-                    {/* 지도 */}
-                    <div className = "kaMap" id ="map">
-                        {/* left */}
-                        <div className="left0">
-                            {/* 일정 */}
-                            <div>
+                    <div className = "center-main">
+                        {/* 지도 */}
+                        <div className = "kaMap" id ="map">
+                            {/* left */}
+                            <div className="left0">
+                                {/* 일정 */}
+                                <div>
+                                </div>
                             </div>
                         </div>
                     </div>

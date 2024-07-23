@@ -70,7 +70,6 @@ body{
 .center0{
     position: absolute;
     top:0;
-    left: 0;
 }
 
 .top-center0{
@@ -201,4 +200,19 @@ body{
     z-index: 0;
     min-width: 100vw;
     min-height: 100vh;
+}
+
+.center-main{
+    display: flex;
+}
+
+.left0{
+    position: absolute;
+    top:0;
+    left: 0;
+    display: block;
+    background-color: #9c1010;
+    width: 400px;
+    height: 90%;
+    z-index: 3;
 }
