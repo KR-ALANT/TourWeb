@@ -9,8 +9,8 @@ import Map from './map/Map';
 function App() {
   return (
     <Routes>
-      <Route path = "/" element = {<MainPage />} />
-      <Route path = "/local" element = {<Local />} />
+      <Route path = "/main/MainPage" element = {<MainPage />} />
+      <Route path = "/local/Local" element = {<Local />} />
       <Route path = "/calendar/Calendar" element = {<Calendar />} />
       <Route path = "/map/Map" element = {<Map />} />
     </Routes>
