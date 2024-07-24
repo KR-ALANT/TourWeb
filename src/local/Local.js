@@ -16,11 +16,11 @@ function Loacl() {
   }
   
   const prePage = () => {
-    navigate('../main/MainPage')
+    navigate('/')
   }
 
   const MPage = () => {
-    navigate('../main/MainPage')
+    navigate('/')
   }
 
   const [query, setQuery] = useState("");

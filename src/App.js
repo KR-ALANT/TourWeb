@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path = "/" element = {<MainPage />} />
-      <Route path = "/local" element = {<Local />} />
+      <Route path = "/local/Local" element = {<Local />} />
       <Route path = "/calendar/Calendar" element = {<Calendar />} />
       <Route path = "/map/Map" element = {<Map />} />
     </Routes>
