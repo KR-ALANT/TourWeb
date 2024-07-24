@@ -27,22 +27,39 @@ function Map(){
     }
 
     return (
-        <div className="MapPage0">
-            {/* logo, step, 카카오 로그인, 커뮤니티, 마이페이지 */}
-            <div className = "top">
-                <div className = "top-left0">
-                    <button className = "logo0" onClick={MPage}>LOGO</button>
-                    <button className = "prev0" onClick={CalPage}>
-                        {/*material-icon 중 chevron_left를 클릭시 이전 페이지로 이동*/}
-                        <span className="material-icons" style={{color: "#131313", marginLeft: "20px", fontSize: "30px"}}>
-                            chevron_left
-                        </span>
-                        <p className = "prev-button0">
-                            이전단계
-                        </p>
-                    </button>
+        <div className = "kaMap" id ="map">
+            <div className="MapPage0">
+                {/* left */}
+                <div className="MapNav">
+                    
                 </div>
-                <div className = "center">
+                <div className="left0">
+                    <div className = "top-left0">
+                        <button className = "logo0" onClick={MPage}>LOGO</button>
+                        <button className = "prev0" onClick={CalPage}>
+                            {/*material-icon 중 chevron_left를 클릭시 이전 페이지로 이동*/}
+                            <span className="material-icons" style={{color: "#131313", marginLeft: "20px", fontSize: "30px"}}>
+                                chevron_left
+                            </span>
+                           <p className = "prev-button0">
+                                이전단계
+                            </p>
+                        </button>
+                    </div>
+                    <div className="left-center0">
+                        {/* 일정 */}
+                        <div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div classNmae="left-center-back1">
+                        </div>
+                        <div classNmae="left-center-back2">
+                        </div>
+                    </div>
+                </div>
+                <div className = "center0">
                     <div className = "top-center0">
                         <div className="step0">
                             <p className = "step10">STEP1</p>
@@ -58,30 +75,20 @@ function Map(){
                             <hr className = "all-line0"></hr>
                         </div>
                     </div>
-                    <div className = "center-main">
-                        {/* 지도 */}
-                        <div className = "kaMap" id ="map">
-                            {/* left */}
-                            <div className="left0">
-                                {/* 일정 */}
-                                <div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div className="top-right0">
-                    <div className = "top-right-buttons0">
-                        <button className="community-button0">커뮤니티</button>
-                        <button className="my-page-button0">마이페이지</button>
-                        <button className="kakao-login-button0">카카오 로그인</button>
+                <div classNma="right0">
+                    <div className="top-right0">
+                        <div className = "top-right-buttons0">
+                            <button className="community-button0">커뮤니티</button>
+                            <button className="my-page-button0">마이페이지</button>
+                            <button className="kakao-login-button0">카카오 로그인</button>
+                        </div>
+                        <button className="save-button0">
+                            <p className="save0">저장하기</p>
+                        </button>
                     </div>
-                    <button className="save-button0">
-                        <p className="save0">저장하기</p>
-                    </button>
                 </div>
             </div>
-            
         </div>
     );
 }
