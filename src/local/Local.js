@@ -12,7 +12,7 @@ function Loacl() {
   const navigate = useNavigate();
   
   const nextPage = () => {
-    navigate('../calendar/Claendar')
+    navigate('../calendar/Calendar')
   }
   
   const prePage = () => {
@@ -29,8 +29,53 @@ function Loacl() {
   const handleSearch = () => {
     setSearchQuery(query);
   };
+  
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      setSearchQuery(query);
+    }
+  };
 
-  let [localName] = useState(['강릉', '춘천', '원주', '동해', '용인', '제주도', '수원', '부산', '대전', '대구', '울산', '인천', '경주'])
+  const [visibleUsers, setVisibleUsers] = useState([]);
+
+  const toggleUserVisibility = (user) => {
+    if (visibleUsers.includes(user)) {
+      setVisibleUsers(visibleUsers.filter(u => u !== user));
+    } else {
+      setVisibleUsers([...visibleUsers, user]);
+    }
+  };
+
+  const [selectedButtons, setSelectedButtons] = useState([]);
+
+  const handleButtonClick = (user) => {
+    const newSelectedButtons = selectedButtons.includes(user)
+      ? selectedButtons.filter(item => item !== user) // 이미 선택된 버튼 클릭 시 제거
+      : [...selectedButtons, user]; // 새로 선택된 버튼 추가
+
+    setSelectedButtons(newSelectedButtons);
+    setnextButtonEn(newSelectedButtons.length > 0); // 선택된 버튼이 있으면 '다음 단계' 버튼 활성화
+  };
+
+  const [selectedButtons1, setSelectedButtons1] = useState([]);
+
+  const handleButtonClick1 = (user) => {
+    setSelectedButtons1(prevSelected1 => {
+      // 클릭된 사용자 이름이 배열에 이미 존재하는지 확인
+      const isSelected1 = prevSelected1.includes(user);
+      if (isSelected1) {
+        // 이미 선택된 상태라면 배열에서 제거
+        return prevSelected1.filter(name => name !== user);
+      } else {
+        // 새로 선택된 상태라면 배열에 추가
+        return [...prevSelected1, user];
+      }
+    });
+  };
+
+  const getButtonStyle = (user) => {
+    return selectedButtons1.includes(user) ? 'enlarged' : '';
+  };
 
   return (
     <div className="LocalPage">
@@ -65,103 +110,36 @@ function Loacl() {
             </div>
           </div>
         </div>
-        
+
         <div className="app">
           <input
             className="search"
             placeholder="어디로 여행을 떠날까요?"
             onChange={(ㄷ) => setQuery(ㄷ.target.value.toLowerCase())}
           />
-          <button><img className="search-button" onClick={handleSearch} src={process.env.PUBLIC_URL + '/search.png'} width ='25px' height = '25px'/></button>
+          <button><img className="search-button" onClick={() => {handleSearch(); handleKeyDown();}} src={process.env.PUBLIC_URL + '/search.png'} width ='25px' height = '25px'/>
+          </button>
           
-          {query && (
-            <div className="list">
-              검색 지역:
-              {Users.filter((ㅁㄴㅇ) =>
-                ㅁㄴㅇ.first_name.toLowerCase().includes(query)
-              ).map((user) => (
-                <button className="listItem" key={user.id}>
+          <div className="selected-location">
+            선택 지역: 
+            {visibleUsers.map((user, index) => (
+              <button key={index} className={`generated-div ${selectedButtons.includes(user) ? 'selected' : ''}`} onClick={() => handleButtonClick(user)}>
+                {user}
+              </button>
+            ))}
+          </div>
+          
+          <div className="list">         
+            {Users.filter((ㅁㄴㅇ) =>
+              ㅁㄴㅇ.first_name.toLowerCase().includes(query)
+            ).map((user) => (
+              <button className={`listItem ${getButtonStyle(user)}`} key={user.id} onClick={() => {toggleUserVisibility(user.first_name); handleButtonClick1(user);}}>
+                <div className="hexagon-inner">
                   {user.first_name}
-                </button>
-              ))}
-            </div>
-          )}  
-        </div>
-        
-        <div className = "local-selection">
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[0]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[1]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[2]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[3]}</p>
-            </div>
-          </button>
-      
-          <button className = "hexagon1">
-            <div className="hexagon-inner">
-              <p>{localName[4]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[5]}</p>
-            </div>
-          </button>
-          <button className = "hexagon2">
-            <div className="hexagon-inner">
-              <p>{localName[6]}</p>
-            </div>
-          </button>
-
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[0]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[1]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[2]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[3]}</p>
-            </div>
-          </button>
-      
-          <button className = "hexagon1">
-            <div className="hexagon-inner">
-              <p>{localName[4]}</p>
-            </div>
-          </button>
-          <button className = "hexagon">
-            <div className="hexagon-inner">
-              <p>{localName[5]}</p>
-            </div>
-          </button>
-          <button className = "hexagon2">
-            <div className="hexagon-inner">
-              <p>{localName[6]}</p>
-            </div>
-          </button>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
       

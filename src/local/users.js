@@ -39,26 +39,26 @@ export const Users = [
         },
     {
         "id": 9,
-        "first_name": "Florida",
+        "first_name": "동해",
     },
     {
         "id": 10,
-        "first_name": "Gerianne",
+        "first_name": "용인",
     },
     {
         "id": 11,
-        "first_name": "Amy",
+        "first_name": "울산",
     },
     {
         "id": 12,
-        "first_name": "Jerrilyn", 
+        "first_name": "인천", 
     },
     {
         "id": 13,
-        "first_name": "Derrik",
+        "first_name": "서울",
         },
     {
         "id": 14,
-        "first_name": "Kellia",
+        "first_name": "대구",
     }
 ]

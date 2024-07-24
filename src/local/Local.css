@@ -190,6 +190,7 @@ body{
   opacity: 1;
 }
 
+/*
 .hexagon {
   width: 118.8px;
   height: 132px;
@@ -243,17 +244,6 @@ body{
   display: inline-block;
 }
 
-.hexagon-inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000000;
-  font-size: 22px;
-  z-index: 1;
-}
-
 .local-selection {
   display: flex;
   flex-wrap: wrap;
@@ -263,7 +253,7 @@ body{
   top: 330px;
   left:37.3%;
 }
-
+*/
 .app {
   position: absolute;
   left: 40.6%;
@@ -284,41 +274,74 @@ body{
 }
 
 .list {
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
-  width: 40%;
-  padding: 0;
+  width: 492px;
+  left: -6.8%;
+  top: 130px;
 }
 
 .listItem {
-  top: 335px;
-  left: 859px;
+  width: 118.8px;
+  height: 132px;
+  margin: 2px;
+  margin-bottom: -31px;
+  background-color: lightblue;
+  clip-path: polygon(
+    50% 0%, 
+    100% 25%, 
+    100% 75%, 
+    50% 100%, 
+    0% 75%, 
+    0% 25%
+  );
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.list .listItem:nth-child(7n+5) {
+  margin-left: 63.5px;
+}
+
+.list .listItem:nth-child(7n+7) {
+  margin-right: 2.5px;
+}
+
+.hexagon-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 22px;
+  z-index: 1;
+}
+
+.enlarged {
+  transform: scale(1.2); /* 버튼을 20% 더 크게 만듭니다 */
+}
+
+.selected-location {
+  position: absolute;
+  display: flex;
+  top: 60px;
+  left: 10px;
+}
+.generated-div {
   width: 66px;
   height: 24px;
-  margin: 3px;
-  background: #C5E9FF 0% 0% no-repeat padding-box;
+  background: #EEF8FE 0% 0% no-repeat padding-box;
   border-radius: 16px;
-  opacity: 1;
-
+  text-align: center;
+  font-size: 14px;
+  color: #8e8e8e;
+  margin-left: 3px;
+  transition: background-color 0.3s ease;
 }
 
-table {
-  width: 100%;
-  margin: 50px 0px;
-  border-spacing: 15px;
-  color: #444;
-}
-
-tr {
-  margin-bottom: 20px;
-}
-
-th {
-  width: 250px;
-  text-align: left;
-  font-size: 20px;
-}
-
-td {
-  width: 250px;
-  font-size: 20px;
+.selected {
+  background-color: #C5E9FF; /* 선택된 버튼의 배경 색상 */
+  color: #000000; /* 선택된 버튼의 글자 색상 */
 }
