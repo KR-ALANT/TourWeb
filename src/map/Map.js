@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //FontAwesomeI
 import React, { useEffect } from "react"
 import './Map.css';
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 const {kakao} = window;
 
@@ -14,7 +15,22 @@ function Map(){
             center: new kakao.maps.LatLng(33.450701, 126.570667),
             level: 3
         };
-        const map = new kakao.maps.Map(container, options);}, [])
+        const map = new kakao.maps.Map(container, options);
+    }, [])
+
+
+    const location = useLocation();
+    const { dates } = location.state || { dates: [] };
+
+    const formatDate = (date) => {
+        if (!(date instanceof Date)) {
+          return '유효하지 않은 날짜';
+        }
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      };
 
     const navigate = useNavigate();
 
@@ -30,9 +46,7 @@ function Map(){
         <div className = "kaMap" id ="map">
             <div className="MapPage0">
                 {/* left */}
-                <div className="MapNav">
-                    
-                </div>
+                <div className="MapNav"></div>
                 <div className="left0">
                     <div className = "top-left0">
                         <button className = "logo0" onClick={MPage}>LOGO</button>
@@ -48,14 +62,22 @@ function Map(){
                     </div>
                     <div className="left-center0">
                         {/* 일정 */}
-                        <div>
-
+                        <div className = "allplan">
+                            <p className = "schedule">일정</p>
+                            <div className = "map-trip-date">
+                                <p>{formatDate(dates[0])}</p>
+                                <p>&nbsp;~&nbsp;</p>
+                                <p>{formatDate(dates[1])}</p>
+                            </div>
+                            <div className = "calplan">
+                                <p className = "plusdate">날짜추가</p>
+                            </div>
                         </div>
                     </div>
                     <div>
-                        <div classNmae="left-center-back1">
+                        <div className="left-center-back1">
                         </div>
-                        <div classNmae="left-center-back2">
+                        <div className="left-center-back2">
                         </div>
                     </div>
                 </div>
