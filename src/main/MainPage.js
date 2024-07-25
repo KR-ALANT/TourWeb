@@ -53,7 +53,7 @@ const MainPage = () => {
   }, []);
 
   const handleStartClick = () => {
-    navigate('/next-page');
+    navigate('../local/Local');
   };
 
   return (
