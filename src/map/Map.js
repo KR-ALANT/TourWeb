@@ -127,8 +127,8 @@ function Map() {
                                         <div className = "scedate2">
                                             {formatDate(date)}
                                         </div>
-                                        <button>
-                                            <FontAwesomeIcon icon={faPlus} style={{ color: "#5E5E5E", width: "13px", height: "13px", marginLeft: "120px"}} />
+                                        <button className = "sceplus">
+                                            <FontAwesomeIcon icon={faPlus} style={{ color: "#5E5E5E", width: "13px", height: "13px"}} />
                                         </button>
                                     </div>
                                 ))}

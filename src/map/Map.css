@@ -342,7 +342,7 @@
     background-color: #fff;
     padding-bottom: 3px;
     padding-top: 10px;
-    width: 280px;
+    width: 290px;
     border-bottom: 1px solid #707070;
 }
 
@@ -365,4 +365,11 @@
     font-size: 14px;
     color: #3E3E3E;
     margin-left: 10px;
+}
+
+.sceplus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 130px;
 }
