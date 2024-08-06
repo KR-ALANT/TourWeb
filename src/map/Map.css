@@ -282,7 +282,7 @@
 }
 
 .custom-datepicker {
-    width: 250px;
+    width: 243px;
     top: 145px;
     left: 79px;
     border: 1px solid #e6e6e6;
@@ -325,21 +325,20 @@
     left: 78px;
 }
 
-/* 선택된 날짜의 색상을 변경 */
-.react-datepicker__day--selected {
-    background-color: #ff7f50; /* 원하는 색상으로 변경 */
-    color: white; /* 텍스트 색상 변경 */
-}
-
 /* 선택된 날짜들의 스타일 */
 .selected-dates {
     margin-top: 20px;
 }
 
 .date-item {
+    display: block;
+    background-color: #fff;   
+}
+
+.scedate{
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: #fff;
     padding-bottom: 3px;
     padding-top: 10px;
     width: 290px;
@@ -369,7 +368,88 @@
 
 .sceplus{
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-left: 130px;
+}
+
+.boxes{
+    display: block;
+
+}
+
+.bigbox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 320px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+
+}
+
+.smallbox{
+    display: block;
+    width: 250px;
+    border: 1px solid #7070704D;
+    border-radius: 20px;
+}
+
+.boxlocation{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 18px;
+    padding: 4px;
+    margin-left: 15px;
+}
+
+.boxline{
+    border: 1px solid #7070704D;
+}
+
+.boxtime{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 14px;
+    padding: 2px;
+    margin-left: 15px;
+}
+
+.boxcost{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 14px; 
+    padding: 2px;
+    margin-left: 15px;
+}
+
+.plus-options{
+    position: absolute;
+    left: 330px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 140px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #7070700D;
+    border-radius: 34px;
+    box-shadow: 0px 2px 2px #00000029;
+}
+
+.oplocation{
+    color: #707070;
+    font-size: 13px;
+}
+
+.optime{
+    color: #707070;
+    font-size: 13px;
+}
+
+.opcost{
+    color: #707070;
+    font-size: 13px;
 }

@@ -1,10 +1,9 @@
-import { faCarSide } from '@fortawesome/free-solid-svg-icons';
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import './Map.css';
-import { useNavigate } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/locale';
@@ -14,7 +13,9 @@ const { kakao } = window;
 function Map() {
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
-    const [plusdate, setPlusdate] = useState([]); // plusdate 상태 추가
+    const [plusdate, setPlusdate] = useState([]);
+    const [boxes, setBoxes] = useState({});
+    const [activePlusButton, setActivePlusButton] = useState({ dateIndex: null, boxIndex: null });
 
     useEffect(() => {
         const container = document.getElementById('map');
@@ -60,8 +61,23 @@ function Map() {
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
-        setPlusdate((prevPlusdate) => [...prevPlusdate, date]); // plusdate 배열에 추가
-        setIsCalendarOpen(false); // 날짜가 선택되면 달력을 닫음
+        setPlusdate((prevPlusdate) => [...prevPlusdate, date]);
+        setIsCalendarOpen(false);
+    };
+
+    const handleAddBox = (index) => {
+        setBoxes((prevBoxes) => {
+            const newBoxes = { ...prevBoxes };
+            if (!newBoxes[index]) {
+                newBoxes[index] = [];
+            }
+            newBoxes[index].push({
+                location: '장소',
+                time: '시간',
+                cost: '비용'
+            });
+            return newBoxes;
+        });
     };
 
     const generateDateRange = (start, end) => {
@@ -76,10 +92,16 @@ function Map() {
 
     const validDates = dates.length === 2 ? generateDateRange(new Date(dates[0]), new Date(dates[1])) : [];
 
+    const handlePlusClick = (dateIndex, boxIndex) => {
+        setActivePlusButton((prev) => ({
+            dateIndex: prev.dateIndex === dateIndex && prev.boxIndex === boxIndex ? null : dateIndex,
+            boxIndex: prev.dateIndex === dateIndex && prev.boxIndex === boxIndex ? null : boxIndex,
+        }));
+    };
+
     return (
         <div className="kaMap" id="map">
             <div className="MapPage0">
-                {/* left */}
                 <div className="MapNav"></div>
                 <div className="left0">
                     <div className="top-left0">
@@ -88,13 +110,10 @@ function Map() {
                             <span className="material-icons" style={{ color: "#131313", marginLeft: "20px", fontSize: "30px" }}>
                                 chevron_left
                             </span>
-                            <p className="prev-button0">
-                                이전단계
-                            </p>
+                            <p className="prev-button0">이전단계</p>
                         </button>
                     </div>
                     <div className="left-center0">
-                        {/* 일정 */}
                         <div className="allplan">
                             <p className="schedule">일정</p>
                             <div className="map-trip-date">
@@ -102,44 +121,73 @@ function Map() {
                                 <p>&nbsp;~&nbsp;</p>
                                 <p>{dates[1] ? formatDate(new Date(dates[1])) : '유효하지 않은 날짜'}</p>
                             </div>
-                            <button className="calplan" onClick={toggleCalendar}>
-                                날짜추가
-                            </button>
+                            <button className="calplan" onClick={toggleCalendar}>날짜추가</button>
                             <div>
-                            {isCalendarOpen && (
-                                <DatePicker
-                                    locale={ko}
-                                    selected={selectedDate}
-                                    onChange={handleDateChange}
-                                    inline
-                                    includeDates={validDates}
-                                    calendarClassName="custom-datepicker"
-                                />
-                            )}
+                                {isCalendarOpen && (
+                                    <DatePicker
+                                        locale={ko}
+                                        selected={selectedDate}
+                                        onChange={handleDateChange}
+                                        inline
+                                        includeDates={validDates}
+                                        calendarClassName="custom-datepicker"
+                                    />
+                                )}
                             </div>
-                            {/* 선택된 날짜들 */}
-                            <div className="selected-dates">
-                                {plusdate.map((date, index) => (
-                                    <div key={index} className="date-item">
-                                        <div className = "scedate1">
+                        </div>
+                        <div className="selected-dates">
+                            {plusdate.map((date, index) => (
+                                <div key={index} className="date-item">
+                                    <div className = 'scedate'>
+                                        <div className="scedate1">
                                             DAY{index + 1}
                                         </div>
-                                        <div className = "scedate2">
+                                        <div className="scedate2">
                                             {formatDate(date)}
                                         </div>
-                                        <button className = "sceplus">
+                                        <button className="sceplus" onClick={() => handleAddBox(index)}>
                                             <FontAwesomeIcon icon={faPlus} style={{ color: "#5E5E5E", width: "13px", height: "13px"}} />
                                         </button>
+                                    </div>                        
+                                    <div className="boxes">
+                                        {boxes[index] && boxes[index].map((box, boxIndex) => (
+                                            <div key={boxIndex} className="bigbox">
+                                                <FontAwesomeIcon icon={faCircle} style={{ color: "#707070", width: "8px", height: "8px"}} />
+                                                <div className="smallbox">
+                                                    <div className="boxlocation">
+                                                        <FontAwesomeIcon icon={faLocationDot} style={{ color: "#000000", width: "15px", height: "15px", marginRight: "6px"}} />
+                                                        <p>{box.location}</p>
+                                                    </div>
+                                                    <hr className="boxline"></hr>
+                                                    <div className="boxtime">
+                                                        <FontAwesomeIcon icon={faClock} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
+                                                        <p>{box.time}</p>
+                                                    </div>
+                                                    <div className="boxcost">
+                                                        <FontAwesomeIcon icon={faWallet} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
+                                                        <p>{box.cost}</p>
+                                                    </div>   
+                                                </div>
+                                                <button onClick={() => handlePlusClick(index, boxIndex)}>
+                                                    <FontAwesomeIcon icon={faCirclePlus} style={{ color: "#79CAFB", width: "20px", height: "20px"}} />
+                                                </button>
+                                                {activePlusButton.dateIndex === index && activePlusButton.boxIndex === boxIndex && (
+                                                    <div className="plus-options">
+                                                        <button className="oplocation">장소</button>
+                                                        <button className="optime">시간</button>
+                                                        <button className="opcost">비용</button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
-                        </div>                        
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     <div>
-                        <div className="left-center-back1">
-                        </div>
-                        <div className="left-center-back2">
-                        </div>
+                        <div className="left-center-back1"></div>
+                        <div className="left-center-back2"></div>
                     </div>
                 </div>
                 <div className="center0">
