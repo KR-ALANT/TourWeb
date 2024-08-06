@@ -5,6 +5,7 @@ import MainPage from './main/MainPage';
 import Local from './local//Local';
 import Calendar from './calendar/Calendar';
 import Map from './map/Map';
+import Community from './community/Community';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Route path = "/local/Local" element = {<Local />} />
       <Route path = "/calendar/Calendar" element = {<Calendar />} />
       <Route path = "/map/Map" element = {<Map />} />
+      <Route path = "/community/Community" element = {<Community />} />
     </Routes>
-  );
+  )
 }
 
 export default App;
