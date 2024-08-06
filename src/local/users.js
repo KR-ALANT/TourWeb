@@ -31,7 +31,7 @@ export const Users = [
     },
     {
         "id": 7,
-        "first_name": "제주도",
+        "first_name": "제주",
         },
     {
         "id": 8,
@@ -60,5 +60,83 @@ export const Users = [
     {
         "id": 14,
         "first_name": "대구",
+    },
+    {
+        "id": 15,
+        "first_name": "평창",
+        
+    },
+    {
+        "id": 16,
+        "first_name": "곡성",
+        
+    },
+    {
+        "id": 17,
+        "first_name": "밀양",
+        
+    },
+    {
+        "id": 18,
+        "first_name": "철원",
+        
+    },
+    {
+        "id": 19,
+        "first_name": "삼척",
+        
+    },
+    {
+        "id": 20,
+        "first_name": "보령",
+        
+    },
+    {
+        "id": 21,
+        "first_name": "태안",
+        },
+    {
+        "id": 22,
+        "first_name": "여수",
+        },
+    {
+        "id": 23,
+        "first_name": "무주",
+    },
+    {
+        "id": 24,
+        "first_name": "의성",
+    },
+    {
+        "id": 25,
+        "first_name": "안동",
+    },
+    {
+        "id": 26,
+        "first_name": "고흥", 
+    },
+    {
+        "id": 27,
+        "first_name": "울릉도",
+    },
+    {
+        "id": 28,
+        "first_name": "부안",
+    },
+    {
+        "id": 29,
+        "first_name": "고창", 
+    },
+    {
+        "id": 30,
+        "first_name": "하동", 
+    },
+    {
+        "id": 31,
+        "first_name": "완도", 
+    },
+    {
+        "id": 32,
+        "first_name": "해남", 
     }
 ]

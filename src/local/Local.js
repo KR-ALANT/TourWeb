@@ -1,6 +1,6 @@
 import { faCarSide } from '@fortawesome/free-solid-svg-icons'; //faCarSide 이미지 불러오기
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //FontAwesomeIcon 이미지 불러오기
-import React, { useState } from 'react'; // useState 사용
+import React, { useState, useEffect } from 'react'; // useState 사용
 import { useNavigate } from "react-router-dom";
 import './Local.css'
 import { Users } from "./users";
@@ -15,10 +15,6 @@ function Loacl() {
     navigate('../calendar/Calendar')
   }
   
-  const prePage = () => {
-    navigate('/')
-  }
-
   const MPage = () => {
     navigate('/')
   }
@@ -77,20 +73,31 @@ function Loacl() {
     return selectedButtons1.includes(user) ? 'enlarged' : '';
   };
 
+  const [usersWithColors, setUsersWithColors] = useState([]);
+
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  // Users 데이터에 랜덤 색상 추가
+  useEffect(() => {
+    const usersWithColors = Users.map(user => ({
+      ...user,
+      color: getRandomColor(),
+    }));
+    setUsersWithColors(usersWithColors);
+  }, [Users]);
+    
   return (
     <div className="LocalPage">
       {/*로고, 이전 버튼*/}
       <div className = "left">
           <button className = "logo" onClick={MPage}>LOGO</button>
-        <button className = "prev" onClick={prePage}>
-        {/*material-icon 중 chevron_left를 클릭시 이전 페이지로 이동*/}
-          <span className="material-icons" style={{color: "#131313", marginLeft: "20px", fontSize: "30px"}}>
-            chevron_left
-          </span>
-          <p className = "prev-button">
-            이전단계
-          </p>
-        </button>
       </div>
       <div className = "local-center">  
         <div className = "top-center">
@@ -119,9 +126,10 @@ function Loacl() {
           />
           <button><img className="search-button" onClick={() => {handleSearch(); handleKeyDown();}} src={process.env.PUBLIC_URL + '/search.png'} width ='25px' height = '25px'/>
           </button>
-          
-          <div className="selected-location">
-            선택 지역: 
+          <div className="Choice">
+            선택 지역:
+          </div>
+          <div className="selected-location"> 
             {visibleUsers.map((user, index) => (
               <button key={index} className={`generated-div ${selectedButtons.includes(user) ? 'selected' : ''}`} onClick={() => handleButtonClick(user)}>
                 {user}
@@ -130,10 +138,10 @@ function Loacl() {
           </div>
           
           <div className="list">         
-            {Users.filter((ㅁㄴㅇ) =>
-              ㅁㄴㅇ.first_name.toLowerCase().includes(query)
+            {usersWithColors.filter((user) =>
+              user.first_name.toLowerCase().includes(query)
             ).map((user) => (
-              <button className={`listItem ${getButtonStyle(user)}`} key={user.id} onClick={() => {toggleUserVisibility(user.first_name); handleButtonClick1(user);}}>
+              <button className={`listItem ${getButtonStyle(user)}`} key={user.id} style={{ backgroundColor: user.color }} onClick={() => {toggleUserVisibility(user.first_name); handleButtonClick1(user);}}>
                 <div className="hexagon-inner">
                   {user.first_name}
                 </div>

@@ -21,35 +21,6 @@ body{
   min-height: 100vh;
 }
 
-/*이전 버튼 전체*/
-.left .prev{
-  position: absolute;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  bottom: 20px; /* 버튼 위치 조정 */
-  left: 20px;
-  width: 218px;
-  height: 58px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 2px 2px #00000029;
-  border: 1px solid #70707033;
-  border-radius: 35px;
-  opacity: 1;
-}
-
-/*이전 버튼*/
-.left .prev .prev-button{
-  margin-left: 65px;
-  width: 72px;
-  height: 26px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  letter-spacing: 0.54px;
-  color: #5E5E5E;
-  opacity: 1;
-}
-
 /*logo, step, mebubar */
 .left .logo{
   position: absolute;
@@ -190,70 +161,6 @@ body{
   opacity: 1;
 }
 
-/*
-.hexagon {
-  width: 118.8px;
-  height: 132px;
-  margin: 2px;
-  margin-bottom: -31px;
-  background-color: lightblue;
-  clip-path: polygon(
-    50% 0%, 
-    100% 25%, 
-    100% 75%, 
-    50% 100%, 
-    0% 75%, 
-    0% 25%
-  );
-  display: inline-block;
-}
-
-.hexagon1 {
-  width: 118.8px;
-  height: 132px;
-  margin: 2px;
-  margin-bottom: -31px;
-  margin-right: 2.5px;
-  background-color: lightblue;
-  clip-path: polygon(
-    50% 0%, 
-    100% 25%, 
-    100% 75%, 
-    50% 100%, 
-    0% 75%, 
-    0% 25%
-  );
-  display: inline-block;
-}
-
-.hexagon2 {
-  width: 118.8px;
-  height: 132px;
-  margin: 2px;
-  margin-bottom: -31px;
-  margin-right: 2.5px;
-  background-color: lightblue;
-  clip-path: polygon(
-    50% 0%, 
-    100% 25%, 
-    100% 75%, 
-    50% 100%, 
-    0% 75%, 
-    0% 25%
-  );
-  display: inline-block;
-}
-
-.local-selection {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: absolute;
-  width: 492px;
-  top: 330px;
-  left:37.3%;
-}
-*/
 .app {
   position: absolute;
   left: 40.6%;
@@ -273,13 +180,25 @@ body{
   border-radius: 24px;
 }
 
+
 .list {
   display: flex;
   flex-wrap: wrap;
+  overflow: auto;
   position: absolute;
-  width: 492px;
-  left: -6.8%;
+  width: 535px;
+  height: 450px;
+  left: -8.3%;
   top: 130px;
+}
+
+.list::-webkit-scrollbar {
+  display: none; /* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
+}
+
+.list {
+  -ms-overflow-style: none;  /* IE 및 Edge에서 스크롤바 숨기기 */
+  scrollbar-width: none;  /* Firefox에서 스크롤바 숨기기 */
 }
 
 .listItem {
@@ -287,7 +206,6 @@ body{
   height: 132px;
   margin: 2px;
   margin-bottom: -31px;
-  background-color: lightblue;
   clip-path: polygon(
     50% 0%, 
     100% 25%, 
@@ -300,8 +218,28 @@ body{
   transition: transform 0.3s ease;
 }
 
+.list .listItem:nth-child(7n+1){
+  margin-left: 15px;
+}
+
+.list .listItem:nth-child(1){
+  margin-top: 15px;
+}
+
+.list .listItem:nth-child(2){
+  margin-top: 15px;
+}
+
+.list .listItem:nth-child(3){
+  margin-top: 15px;
+}
+
+.list .listItem:nth-child(4){
+  margin-top: 15px;
+}
+
 .list .listItem:nth-child(7n+5) {
-  margin-left: 63.5px;
+  margin-left: 76.5px;
 }
 
 .list .listItem:nth-child(7n+7) {
@@ -321,14 +259,34 @@ body{
 
 .enlarged {
   transform: scale(1.2); /* 버튼을 20% 더 크게 만듭니다 */
+  z-index: 1;
 }
 
-.selected-location {
+.Choice{
   position: absolute;
-  display: flex;
   top: 60px;
   left: 10px;
 }
+.selected-location {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  width: 300px;
+  height: 60px;
+  top: 60px;
+  left: 80px;
+}
+
+.selected-location::-webkit-scrollbar {
+  display: none; /* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
+}
+
+.selected-location {
+  -ms-overflow-style: none;  /* IE 및 Edge에서 스크롤바 숨기기 */
+  scrollbar-width: none;  /* Firefox에서 스크롤바 숨기기 */
+}
+
 .generated-div {
   width: 66px;
   height: 24px;
@@ -338,6 +296,7 @@ body{
   font-size: 14px;
   color: #8e8e8e;
   margin-left: 3px;
+  margin-bottom: 5px;
   transition: background-color 0.3s ease;
 }
 
