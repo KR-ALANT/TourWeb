@@ -1,4 +1,4 @@
-import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/locale';
+import TimePicker from 'react-time-picker';
 
 const { kakao } = window;
 
@@ -16,7 +17,13 @@ function Map() {
     const [plusdate, setPlusdate] = useState([]);
     const [boxes, setBoxes] = useState({});
     const [activePlusButton, setActivePlusButton] = useState({ dateIndex: null, boxIndex: null });
-
+    const [isLocationClicked, setIsLocationClicked] = useState(false);
+    const [editingCostIndex, setEditingCostIndex] = useState(null); // New state for cost editing
+    const [newCost, setNewCost] = useState(''); // New state for the input value
+    const [editingTimeIndex, setEditingTimeIndex] = useState(null);  // New state for time editing
+    const [newStartTime, setNewStartTime] = useState('10:00');  // Initial start time value
+    const [newEndTime, setNewEndTime] = useState('12:00');  // Initial end time value
+    
     useEffect(() => {
         const container = document.getElementById('map');
         const options = {
@@ -99,6 +106,49 @@ function Map() {
         }));
     };
 
+    const handleTimeClick = (index) => {
+        setEditingTimeIndex(editingTimeIndex === index ? null : index);
+    };
+
+    const handleLocationClick = () => {
+        setIsLocationClicked((prev) => !prev);  // Toggle the state on each click
+    };
+
+    const handleStartTimeChange = (time) => {
+        setNewStartTime(time);
+    };
+
+    const handleEndTimeChange = (time) => {
+        setNewEndTime(time);
+    };
+
+    const handleTimeSubmit = (index, boxIndex) => {
+        setBoxes((prevBoxes) => {
+            const newBoxes = { ...prevBoxes };
+            newBoxes[index][boxIndex].time = `${newStartTime} ~ ${newEndTime}`;
+            return newBoxes;
+        });
+        setEditingTimeIndex(null);
+    };
+
+    const handleCostClick = (index) => {
+        setEditingCostIndex(editingCostIndex === index ? null : index); // Toggle editing state
+    };
+
+    const handleCostChange = (e) => {
+        setNewCost(e.target.value);
+    };
+
+    const handleCostSubmit = (index, boxIndex) => {
+        setBoxes((prevBoxes) => {
+            const newBoxes = { ...prevBoxes };
+            newBoxes[index][boxIndex].cost = newCost;
+            return newBoxes;
+        });
+        setEditingCostIndex(null); // Close the input field after submission
+        setNewCost(''); // Reset the input field
+    };
+
     return (
         <div className="kaMap" id="map">
             <div className="MapPage0">
@@ -161,11 +211,50 @@ function Map() {
                                                     <hr className="boxline"></hr>
                                                     <div className="boxtime">
                                                         <FontAwesomeIcon icon={faClock} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
-                                                        <p>{box.time}</p>
+                                                        {editingTimeIndex === `${index}-${boxIndex}` ? (
+                                                            <>
+                                                                <TimePicker
+                                                                    onChange={handleStartTimeChange}
+                                                                    value={newStartTime}
+                                                                    className="time-picker"
+                                                                />
+                                                                <span> ~ </span>
+                                                                <TimePicker
+                                                                    onChange={handleEndTimeChange}
+                                                                    value={newEndTime}
+                                                                    className="time-picker"
+                                                                />
+                                                                <button onClick={() => handleTimeSubmit(index, boxIndex)}>
+                                                                    확인
+                                                                </button>
+                                                            </>
+                                                        ) : (
+                                                            <p>
+                                                                {box.time}
+                                                            </p>
+                                                        )}
                                                     </div>
                                                     <div className="boxcost">
                                                         <FontAwesomeIcon icon={faWallet} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
-                                                        <p>{box.cost}</p>
+                                                        {/* Toggle between displaying the cost and an input field */}
+                                                        {editingCostIndex === `${index}-${boxIndex}` ? (
+                                                            <>
+                                                                <input
+                                                                    type="text"
+                                                                    value={newCost}
+                                                                    onChange={handleCostChange}
+                                                                    className="cost-input"
+                                                                    placeholder="비용 입력"
+                                                                />
+                                                                <button onClick={() => handleCostSubmit(index, boxIndex)}>
+                                                                    확인
+                                                                </button>
+                                                            </>
+                                                        ) : (
+                                                            <p>
+                                                                {box.cost}
+                                                            </p>
+                                                        )}
                                                     </div>   
                                                 </div>
                                                 <button onClick={() => handlePlusClick(index, boxIndex)}>
@@ -173,9 +262,9 @@ function Map() {
                                                 </button>
                                                 {activePlusButton.dateIndex === index && activePlusButton.boxIndex === boxIndex && (
                                                     <div className="plus-options">
-                                                        <button className="oplocation">장소</button>
-                                                        <button className="optime">시간</button>
-                                                        <button className="opcost">비용</button>
+                                                        <button className="oplocation" onClick={handleLocationClick}>장소</button>
+                                                        <button className="optime" onClick={() => handleTimeClick(`${index}-${boxIndex}`)}>시간</button>
+                                                        <button className="opcost" onClick={() => handleCostClick(`${index}-${boxIndex}`)}>비용</button>
                                                     </div>
                                                 )}
                                             </div>
@@ -186,8 +275,21 @@ function Map() {
                         </div>
                     </div>
                     <div>
-                        <div className="left-center-back1"></div>
-                        <div className="left-center-back2"></div>
+                        <div className={`left-center-back1 ${isLocationClicked ? 'move-right' : ''}`}>
+                            <div className = "triplocation">
+                                <div className = "tripinput">
+                                    <input
+                                        className="tripsearch"
+                                        placeholder="여행지를 입력해 주세요"
+                                    />
+                                    <button className="magnifyingglass">
+                                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#5E5E5E", width: "18px", height: "18px"}} />
+                                    </button>
+                                </div>
+                                <p className = "searchresult"> 검색결과 </p>
+                            </div>
+                        </div>
+                        <div className={`left-center-back2 ${isLocationClicked ? 'move-right' : ''}`}></div>
                     </div>
                 </div>
                 <div className="center0">
