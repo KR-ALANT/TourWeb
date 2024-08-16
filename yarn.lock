@@ -8066,7 +8066,11 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
+<<<<<<< HEAD
 prop-types@^15.7.2, prop-types@^15.8.1:
+=======
+prop-types@^15.7.2, prop-types@^15.8.1, "prop-types@>= 15.5.7":
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8348,7 +8352,16 @@ react-time-picker@^7.0.0:
     react-fit "^2.0.0"
     update-input-width "^1.4.0"
 
+<<<<<<< HEAD
 react@*, "react@^15.5.x || ^16.x || ^17.x || ^18.x", "react@^16.8 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.9.0 || ^17 || ^18", react@^18.0.0, react@^18.3.1, "react@>= 16", react@>=16.3, react@>=16.8, react@>=16.8.0:
+=======
+react-timepicker@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/react-timepicker/-/react-timepicker-2.0.2.tgz"
+  integrity sha512-ysooxfKhlVCWVwI2tL/DaNBk2y5LcAEod+q9PuLAcVx9RN3e0Fs0+MzigHY7oBPa+p+GDyTwKWkkwb3K9DA+uA==
+
+react@*, "react@^15.5.x || ^16.x || ^17.x || ^18.x", "react@^16.8 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.9.0 || ^17 || ^18", react@^18.0.0, react@^18.3.1, "react@>= 15.5.0", "react@>= 16", react@>=16.3, react@>=16.8, react@>=16.8.0:
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==

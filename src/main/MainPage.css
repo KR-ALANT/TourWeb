@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Google Fonts 및 기본 스타일 설정 */
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
@@ -12,6 +13,32 @@
 body {
   margin: 0;
   overflow: hidden;
+=======
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", "sans-serif";
+}
+
+button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
 }
 
 .main-page {
@@ -20,6 +47,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   overflow: hidden; /* 스크롤 방지 */
 }
 
@@ -63,10 +91,33 @@ body {
   height: 180px;
   width: 180px;
   border-radius: 50%;
+=======
+  background-color: black; /* 이미지 투명도를 위한 배경색 설정 */
+}
+
+.slideshow-image {
+  max-width: 100%;
+  max-height: 100%;
+  transition: opacity 2s ease-in-out;
+  object-fit: cover;
+}
+
+.start-button {
+  position: absolute;
+  bottom: 265px; /* 버튼 위치 조정 */
+  left: 51%;
+  transform: translateX(-50%); /* 자신의 너비의 절반만큼 왼쪽으로 이동하여 중앙 정렬 */
+  background-color: rgba(255, 255, 255, 0.6); /* 흰색과 투명 사이의 배경색 */
+  color: #000; /* 버튼 텍스트 색상 */
+  height: 180px;
+  width: 180px;
+  border-radius: 100px;
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
   border: none;
   cursor: pointer;
   font-size: 18px;
   font-weight: bold;
+<<<<<<< HEAD
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,6 +135,24 @@ body {
 
 /* 커뮤니티, 마이페이지, 로그인 버튼 전체 */
 .top-right-buttons0 {
+=======
+  z-index: 10;
+  opacity: 0; /* 초기 상태에서 버튼을 숨김 */
+  transition: opacity 3s ease-in-out; /* 투명도 전환을 서서히 설정 */
+}
+
+.start-button.visible {
+  opacity: 1; /* 버튼이 나타나는 상태 */
+}
+
+.start-button:hover {
+  background-color: rgba(255, 255, 255, 0.9); /* 호버 시 배경색 조정 */
+  color: #000; /* 호버 시 텍스트 색상 조정 */
+}
+
+/*커뮤니티, 마이페이지, 로그인 전체*/
+.top-right-buttons {
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
   position: absolute;
   top: 20px;
   right: 20px;
@@ -92,17 +161,26 @@ body {
   z-index: 2;
 }
 
+<<<<<<< HEAD
 /* 커뮤니티, 마이페이지, 로그인 버튼 각각 */
 .top-right-buttons0 button {
   padding: 10px 20px;
   background-color: transparent;
   color: #fff;
+=======
+/*커뮤니티, 마이페이지, 로그인 각각*/
+.top-right-buttons button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #fff; /* 버튼 텍스트 색상 흰색으로 설정 */
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
   font-size: 1rem;
   font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   z-index: 1;
+<<<<<<< HEAD
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -114,18 +192,37 @@ body {
 }
 
 /* 로고 스타일 */
+=======
+}
+
+.top-right-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* 호버 시 배경색 조정 */
+}
+
+/* 여기에 로고 스타일을 추가합니다 */
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
 .logo {
   position: absolute;
   top: 20px;
   left: 30px;
   font-size: 24px;
   font-weight: bold;
+<<<<<<< HEAD
   color: #fff;
+=======
+  color: #fff; /* 로고 텍스트 색상 흰색으로 설정 */
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
   cursor: pointer;
   z-index: 10;
 }
 
+<<<<<<< HEAD
 /* 로고 호버 효과 */
 .logo:hover {
   color: #ccc;
 }
+=======
+.logo:hover {
+  color: #ccc; /* 로고 호버 시 색상 조정 */
+}
+>>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
