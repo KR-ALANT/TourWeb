@@ -1,0 +1,131 @@
+/* Google Fonts 및 기본 스타일 설정 */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.main-page {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* 스크롤 방지 */
+}
+
+/* 슬라이드쇼 이미지 스타일 */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0; /* 기본적으로 투명하게 설정 */
+  transition: opacity 2s ease-in-out, filter 2s ease-in-out; /* 전환 시간 및 애니메이션 속도 조정 */
+  z-index: 1;
+}
+
+/* 페이드 인 효과 */
+.background-image.fade-in {
+  opacity: 1; /* 이미지가 완전히 드러남 */
+  filter: blur(0); /* 블러를 없앰 */
+  z-index: 2; /* 현재 보이는 이미지가 위에 있도록 설정 */
+}
+
+/* 페이드 아웃 효과 */
+.background-image.fade-out {
+  opacity: 0; /* 완전히 투명하게 만듦 */
+  filter: blur(5px); /* 흐림 효과 추가 */
+  z-index: 1; /* 전환될 이미지가 아래에 있도록 설정 */
+}
+
+/* 시작 버튼 스타일 */
+.start-button {
+  position: absolute;
+  top: 330px;
+  left: 45%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+  transform: scale(2.5);
+  transition: opacity 1s ease-in-out, transform 2s ease-in-out;
+}
+
+/* 버튼이 나타나는 상태 */
+.start-button.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 커뮤니티, 마이페이지, 로그인 버튼 전체 */
+.top-right-buttons0 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+/* 커뮤니티, 마이페이지, 로그인 버튼 각각 */
+.top-right-buttons0 button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 버튼 호버 효과 */
+.top-right-buttons0 button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #000;
+  border: 2px solid #fff;
+}
+
+/* 로고 스타일 */
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* 로고 호버 효과 */
+.logo:hover {
+  color: #ccc;
+}
