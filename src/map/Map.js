@@ -1,6 +1,3 @@
-import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faClock } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import './Map.css';
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,10 +5,11 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/locale';
 import TimePicker from 'react-time-picker';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 
-const { kakao } = window;
-
-function Map() {
+const Map = () => {
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [plusdate, setPlusdate] = useState([]);
@@ -23,15 +21,45 @@ function Map() {
     const [editingTimeIndex, setEditingTimeIndex] = useState(null);
     const [newStartTime, setNewStartTime] = useState('10:00');
     const [newEndTime, setNewEndTime] = useState('12:00');
+    const [kakaoMapLoaded, setKakaoMapLoaded] = useState(false);
 
     useEffect(() => {
-        const container = document.getElementById('map');
-        const options = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667),
-            level: 3
+        // Function to load Kakao Maps API script
+        const loadKakaoMapScript = () => {
+            return new Promise((resolve, reject) => {
+                if (window.kakao && window.kakao.maps) {
+                    resolve();
+                } else {
+                    const script = document.createElement('script');
+                    script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_API_KEY";
+                    script.onload = () => resolve();
+                    script.onerror = () => reject(new Error('Failed to load Kakao Maps API'));
+                    document.head.appendChild(script);
+                }
+            });
         };
-        new kakao.maps.Map(container, options);
+
+        loadKakaoMapScript()
+            .then(() => {
+                setKakaoMapLoaded(true);
+            })
+            .catch((error) => console.error(error));
     }, []);
+
+    useEffect(() => {
+        if (kakaoMapLoaded) {
+            const container = document.getElementById('map');
+            if (container) {
+                const options = {
+                    center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+                    level: 3
+                };
+                new window.kakao.maps.Map(container, options);
+            } else {
+                console.error('Map container not found');
+            }
+        }
+    }, [kakaoMapLoaded]);
 
     const location = useLocation();
     const { dates } = location.state || { dates: [] };
@@ -150,7 +178,7 @@ function Map() {
     };
 
     return (
-        <div className="kaMap" id="map">
+        <div className="kaMap">
             <div className="MapPage0">
                 <div className="MapNav"></div>
                 <div className="left0">
@@ -324,4 +352,4 @@ function Map() {
     );
 }
 
-export default Map;  // default로 내보내기
+export default Map;
