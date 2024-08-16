@@ -20,10 +20,7 @@
     "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",
     "react-time-picker": "^7.0.0",
-<<<<<<< HEAD
-=======
     "react-timepicker": "^2.0.2",
->>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -18,19 +18,19 @@ function Map() {
     const [boxes, setBoxes] = useState({});
     const [activePlusButton, setActivePlusButton] = useState({ dateIndex: null, boxIndex: null });
     const [isLocationClicked, setIsLocationClicked] = useState(false);
-    const [editingCostIndex, setEditingCostIndex] = useState(null); // New state for cost editing
-    const [newCost, setNewCost] = useState(''); // New state for the input value
-    const [editingTimeIndex, setEditingTimeIndex] = useState(null);  // New state for time editing
-    const [newStartTime, setNewStartTime] = useState('10:00');  // Initial start time value
-    const [newEndTime, setNewEndTime] = useState('12:00');  // Initial end time value
-    
+    const [editingCostIndex, setEditingCostIndex] = useState(null);
+    const [newCost, setNewCost] = useState('');
+    const [editingTimeIndex, setEditingTimeIndex] = useState(null);
+    const [newStartTime, setNewStartTime] = useState('10:00');
+    const [newEndTime, setNewEndTime] = useState('12:00');
+
     useEffect(() => {
         const container = document.getElementById('map');
         const options = {
             center: new kakao.maps.LatLng(33.450701, 126.570667),
             level: 3
         };
-        const map = new kakao.maps.Map(container, options);
+        new kakao.maps.Map(container, options);
     }, []);
 
     const location = useLocation();
@@ -56,11 +56,11 @@ function Map() {
 
     const MPage = () => {
         navigate('/');
-    }
+    };
 
     const CalPage = () => {
         navigate('../calendar/Calendar');
-    }
+    };
 
     const toggleCalendar = () => {
         setIsCalendarOpen(!isCalendarOpen);
@@ -111,7 +111,7 @@ function Map() {
     };
 
     const handleLocationClick = () => {
-        setIsLocationClicked((prev) => !prev);  // Toggle the state on each click
+        setIsLocationClicked((prev) => !prev);
     };
 
     const handleStartTimeChange = (time) => {
@@ -132,7 +132,7 @@ function Map() {
     };
 
     const handleCostClick = (index) => {
-        setEditingCostIndex(editingCostIndex === index ? null : index); // Toggle editing state
+        setEditingCostIndex(editingCostIndex === index ? null : index);
     };
 
     const handleCostChange = (e) => {
@@ -145,8 +145,8 @@ function Map() {
             newBoxes[index][boxIndex].cost = newCost;
             return newBoxes;
         });
-        setEditingCostIndex(null); // Close the input field after submission
-        setNewCost(''); // Reset the input field
+        setEditingCostIndex(null);
+        setNewCost('');
     };
 
     return (
@@ -188,7 +188,7 @@ function Map() {
                         <div className="selected-dates">
                             {plusdate.map((date, index) => (
                                 <div key={index} className="date-item">
-                                    <div className = 'scedate'>
+                                    <div className="scedate">
                                         <div className="scedate1">
                                             DAY{index + 1}
                                         </div>
@@ -236,7 +236,6 @@ function Map() {
                                                     </div>
                                                     <div className="boxcost">
                                                         <FontAwesomeIcon icon={faWallet} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
-                                                        {/* Toggle between displaying the cost and an input field */}
                                                         {editingCostIndex === `${index}-${boxIndex}` ? (
                                                             <>
                                                                 <input
@@ -276,8 +275,8 @@ function Map() {
                     </div>
                     <div>
                         <div className={`left-center-back1 ${isLocationClicked ? 'move-right' : ''}`}>
-                            <div className = "triplocation">
-                                <div className = "tripinput">
+                            <div className="triplocation">
+                                <div className="tripinput">
                                     <input
                                         className="tripsearch"
                                         placeholder="여행지를 입력해 주세요"
@@ -286,7 +285,7 @@ function Map() {
                                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#5E5E5E", width: "18px", height: "18px"}} />
                                     </button>
                                 </div>
-                                <p className = "searchresult"> 검색결과 </p>
+                                <p className="searchresult"> 검색결과 </p>
                             </div>
                         </div>
                         <div className={`left-center-back2 ${isLocationClicked ? 'move-right' : ''}`}></div>
@@ -325,8 +324,4 @@ function Map() {
     );
 }
 
-<<<<<<< HEAD
-export default Map;
-=======
-export default Map;
->>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
+export default Map;  // default로 내보내기

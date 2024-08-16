@@ -170,8 +170,4 @@ function Community() {
   );
 }
 
-<<<<<<< HEAD
 export default Community;
-=======
-export default Community;
->>>>>>> dca6423ed7f3735c806106b1f123d084a0c0ee4d
