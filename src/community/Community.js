@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './Community.css';
 
 function Community() {
   // Define the cards data at the beginning
+  const navigate = useNavigate();
+
+  const MPage = () => {
+    navigate('/')
+  }
+
+  const goCommunity = () => {
+    navigate('../community/Community')
+  }
+  
   const cards = [
     {
       id: 1,
@@ -96,10 +107,12 @@ function Community() {
         <header className="App-header">
           <div className="header-content">
             <div className="logo-section">
-              <span className="logo">LOGO</span>
-              <span className="community">커뮤니티</span>
-              <span className="mypage">마이페이지</span>
-              <span className="kakao-login">카카오 로그인</span>
+              <button className="logo" onClick={MPage}>LOGO</button>
+            </div>
+            <div className="top-right-buttons">
+              <button className="community" onClick={goCommunity}>커뮤니티</button>
+              <button className="mypage">마이페이지</button>
+              <button className="kakao-login">카카오 로그인</button>
             </div>
           </div>
         </header>
