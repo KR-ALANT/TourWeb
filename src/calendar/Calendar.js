@@ -188,7 +188,7 @@ function Calendar() {
   const navigate = useNavigate();
 
   const nextPage = () => {
-    navigate('../map/Map', { state: { dates: selDates } })
+    navigate('/map', { state: { dates: selDates } })
   }
 
   const MPage = () => {

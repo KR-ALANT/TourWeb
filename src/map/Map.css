@@ -87,23 +87,30 @@
     border: 2px solid #0000000D;
     box-shadow: 2px 3px 6px #00000029;
     border-radius: 0px 40px 40px 0px;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
     z-index: 2;
+}
+
+.move-right {
+    transform: translateX(350px);
 }
 
 .left-center-back2{
     position: absolute;
     display: block;
     top: 200px;
-    left: 469px;
+    left: 468px;
     width: 30px;
     height: 80px;
     background-color: #FFFFFF;
     border-right: 2px solid #0000000D;
     border-left: 0px;
-    border-top:2px solid #0000000D;
+    border-top:1px solid #0000000D;
     border-bottom:2px solid #0000000D;
     box-shadow: 2px 1px 3px #00000029;
     border-radius: 0px 15px 15px 0px;
+    transition: transform 0.3s ease-in-out;
     z-index: 2;
 }
 
@@ -452,4 +459,41 @@
 .opcost{
     color: #707070;
     font-size: 13px;
+}
+
+.tripsearch{
+    position: absolute;
+    top: 70px;
+    left: 73px;
+    padding: 12px 80px 12px 16px;
+    font-size: 16px;
+    background-color: #C5E9FF;
+    border: 0px solid #C5E9FF;
+    border-radius: 24px;
+}
+
+.magnifyingglass{
+    position: absolute;
+    top: 85px;
+    left: 350px;
+}
+
+.searchresult{
+    position: absolute;
+    top: 165px;
+    left: 80px;
+    color: #5E5E5E;
+    font-size: 13px;
+}
+
+.time-picker {
+    width: 200px;   
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.cost-input {
+    width: 80px;
+    font-size: 12px;
+    margin-right: 5px;
 }
