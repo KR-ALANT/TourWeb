@@ -332,7 +332,7 @@ body{
 }
 
 /*커뮤니티, 마이페이지, 로그인 전체*/
-.top-right-buttons {
+.top-right-buttons-Ca {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -342,7 +342,7 @@ body{
 }
 
 /*커뮤니티, 마이페이지, 로그인 각각*/
-.top-right-buttons button {
+.top-right-buttons-Ca button {
   padding: 10px 20px;
   background-color: transparent;
   color: #707070; /* 버튼 텍스트 색상 흰색으로 설정 */
@@ -355,7 +355,7 @@ body{
 }
 
 /*다음 버튼*/
-.right .next{
+.right-Ca .next{
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -372,13 +372,13 @@ body{
 }
 
 /*선택 버튼 누르기 전 상태*/
-.right .next:disabled {
+.right-Ca .next:disabled {
   color: #5E5E5E;
   opacity: 0.5;
 }
 
 /*다음 버튼*/
-.right .next .next-button{
+.right-Ca .next .next-button{
   margin-left: 30px;
   width: 72px;
   height: 26px;
