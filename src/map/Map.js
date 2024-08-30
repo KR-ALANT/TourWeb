@@ -7,7 +7,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/locale';
-import TimePicker from 'react-time-picker';
 
 const { kakao } = window;
 
@@ -24,6 +23,8 @@ function Map() {
     const [newStartTime, setNewStartTime] = useState('10:00');  // Initial start time value
     const [newEndTime, setNewEndTime] = useState('12:00');  // Initial end time value
     
+
+
     useEffect(() => {
         const container = document.getElementById('map');
         const options = {
@@ -114,12 +115,12 @@ function Map() {
         setIsLocationClicked((prev) => !prev);  // Toggle the state on each click
     };
 
-    const handleStartTimeChange = (time) => {
-        setNewStartTime(time);
+    const handleStartTimeChange = (e) => {
+        setNewStartTime(e.target.value);
     };
 
-    const handleEndTimeChange = (time) => {
-        setNewEndTime(time);
+    const handleEndTimeChange = (e) => {
+        setNewEndTime(e.target.value);
     };
 
     const handleTimeSubmit = (index, boxIndex) => {
@@ -213,16 +214,18 @@ function Map() {
                                                         <FontAwesomeIcon icon={faClock} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
                                                         {editingTimeIndex === `${index}-${boxIndex}` ? (
                                                             <>
-                                                                <TimePicker
-                                                                    onChange={handleStartTimeChange}
+                                                                <input
+                                                                    type="time"
                                                                     value={newStartTime}
-                                                                    className="time-picker"
+                                                                    onChange={handleStartTimeChange}
+                                                                    className="custom-time-input"
                                                                 />
                                                                 <span> ~ </span>
-                                                                <TimePicker
-                                                                    onChange={handleEndTimeChange}
+                                                                <input
+                                                                    type="time"
                                                                     value={newEndTime}
-                                                                    className="time-picker"
+                                                                    onChange={handleEndTimeChange}
+                                                                    className="custom-time-input"
                                                                 />
                                                                 <button onClick={() => handleTimeSubmit(index, boxIndex)}>
                                                                     확인
