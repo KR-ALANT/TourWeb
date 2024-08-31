@@ -6,7 +6,8 @@ export const Cards = [
       profileImage: `${process.env.PUBLIC_URL}/img/profile.jpeg`,
       cardImage: `${process.env.PUBLIC_URL}/img/card.png`,
       scrapCount: 27,
-      hashtags: ['#어디여행', '#추천명소']
+      hashtags: ['#어디여행', '#추천명소'],
+      postdata: 2024/8/25
     },
     {
       id: 2,
@@ -15,7 +16,8 @@ export const Cards = [
       profileImage: `${process.env.PUBLIC_URL}/img/profile.jpeg`,
       cardImage: `${process.env.PUBLIC_URL}/img/card.png`,
       scrapCount: 15,
-      hashtags: ['#어디여행', '#추천명소']
+      hashtags: ['#어디여행', '#추천명소'],
+      postdata: 2024/8/24
     },
     {
       id: 3,
@@ -24,7 +26,8 @@ export const Cards = [
       profileImage: `${process.env.PUBLIC_URL}/img/profile.jpeg`,
       cardImage: `${process.env.PUBLIC_URL}/img/card.png`,
       scrapCount: 32,
-      hashtags: ['#어디여행', '#추천명소']
+      hashtags: ['#어디여행', '#추천명소'],
+      postdata: 2024/8/23
     },
     {
       id: 4,
@@ -33,7 +36,8 @@ export const Cards = [
       profileImage: `${process.env.PUBLIC_URL}/img/profile.jpeg`,
       cardImage: `${process.env.PUBLIC_URL}/img/card.png`,
       scrapCount: 24,
-      hashtags: ['#어디여행', '#추천명소']
+      hashtags: ['#어디여행', '#추천명소'],
+      postdata: 2024/8/22
     },
     {
       id: 5,
@@ -42,7 +46,8 @@ export const Cards = [
       profileImage: `${process.env.PUBLIC_URL}/img/profile.jpeg`,
       cardImage: `${process.env.PUBLIC_URL}/img/card.png`,
       scrapCount: 20,
-      hashtags: ['#어디여행', '#추천명소']
+      hashtags: ['#어디여행', '#추천명소'],
+      postdata: 2024/8/21
     },
     
   ];
