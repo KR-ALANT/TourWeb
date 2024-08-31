@@ -12,11 +12,15 @@ function Loacl() {
   const navigate = useNavigate();
   
   const nextPage = () => {
-    navigate('../calendar/Calendar')
+    navigate('../Calendar')
   }
   
   const MPage = () => {
     navigate('/')
+  }
+
+  const goCommunity = () => {
+    navigate('../Community')
   }
 
   const [query, setQuery] = useState("");
@@ -152,9 +156,9 @@ function Loacl() {
       </div>
       
       {/*커뮤, 마이, 로그인, 다음 버튼*/}
-      <div className = "right">
-        <div className = "top-right-buttons">
-          <button className="community-button">커뮤니티</button>
+      <div className = "right-L">
+        <div className = "top-right-buttons-L">
+          <button className="community-button" onClick={goCommunity}>커뮤니티</button>
           <button className="my-page-button">마이페이지</button>
           <button className="kakao-login-button">카카오 로그인</button>
         </div>

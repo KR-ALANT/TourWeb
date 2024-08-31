@@ -188,7 +188,7 @@ function Calendar() {
   const navigate = useNavigate();
 
   const nextPage = () => {
-    navigate('../map/Map', { state: { dates: selDates } })
+    navigate('/map', { state: { dates: selDates } })
   }
 
   const MPage = () => {
@@ -302,8 +302,8 @@ function Calendar() {
         </div>
       </div>
       {/*이전 버튼, 다음 버튼*/}
-      <div className = "right">
-        <div className = "top-right-buttons">
+      <div className = "right-Ca">
+        <div className = "top-right-buttons-Ca">
           <button className="community-button">커뮤니티</button>
           <button className="my-page-button">마이페이지</button>
           <button className="kakao-login-button">카카오 로그인</button>

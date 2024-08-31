@@ -23,15 +23,13 @@ function Map() {
     const [newStartTime, setNewStartTime] = useState('10:00');  // Initial start time value
     const [newEndTime, setNewEndTime] = useState('12:00');  // Initial end time value
     
-
-
     useEffect(() => {
         const container = document.getElementById('map');
         const options = {
             center: new kakao.maps.LatLng(33.450701, 126.570667),
             level: 3
         };
-        const map = new kakao.maps.Map(container, options);
+        new kakao.maps.Map(container, options);
     }, []);
 
     const location = useLocation();
@@ -112,7 +110,7 @@ function Map() {
     };
 
     const handleLocationClick = () => {
-        setIsLocationClicked((prev) => !prev);  // Toggle the state on each click
+        setIsLocationClicked((prev) => !prev);
     };
 
     const handleStartTimeChange = (e) => {
@@ -211,8 +209,8 @@ function Map() {
                                                     </div>
                                                     <hr className="boxline"></hr>
                                                     <div className="boxtime">
-                                                        <FontAwesomeIcon icon={faClock} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
-                                                        {editingTimeIndex === `${index}-${boxIndex}` ? (
+                                                            <FontAwesomeIcon icon={faClock} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
+                                                            {editingTimeIndex === `${index}-${boxIndex}` ? (
                                                             <>
                                                                 <input
                                                                     type="time"
@@ -238,8 +236,7 @@ function Map() {
                                                         )}
                                                     </div>
                                                     <div className="boxcost">
-                                                        <FontAwesomeIcon icon={faWallet} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
-                                                        {/* Toggle between displaying the cost and an input field */}
+                                                    <FontAwesomeIcon icon={faWallet} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
                                                         {editingCostIndex === `${index}-${boxIndex}` ? (
                                                             <>
                                                                 <input
@@ -279,8 +276,8 @@ function Map() {
                     </div>
                     <div>
                         <div className={`left-center-back1 ${isLocationClicked ? 'move-right' : ''}`}>
-                            <div className = "triplocation">
-                                <div className = "tripinput">
+                            <div className="triplocation">
+                                <div className="tripinput">
                                     <input
                                         className="tripsearch"
                                         placeholder="여행지를 입력해 주세요"
@@ -289,7 +286,7 @@ function Map() {
                                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#5E5E5E", width: "18px", height: "18px"}} />
                                     </button>
                                 </div>
-                                <p className = "searchresult"> 검색결과 </p>
+                                <p className="searchresult"> 검색결과 </p>
                             </div>
                         </div>
                         <div className={`left-center-back2 ${isLocationClicked ? 'move-right' : ''}`}></div>
