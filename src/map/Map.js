@@ -1,65 +1,36 @@
+import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import './Map.css';
 import { useNavigate, useLocation } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/locale';
-import TimePicker from 'react-time-picker';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faClock } from '@fortawesome/free-regular-svg-icons';
 
-const Map = () => {
+const { kakao } = window;
+
+function Map() {
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [plusdate, setPlusdate] = useState([]);
     const [boxes, setBoxes] = useState({});
     const [activePlusButton, setActivePlusButton] = useState({ dateIndex: null, boxIndex: null });
     const [isLocationClicked, setIsLocationClicked] = useState(false);
-    const [editingCostIndex, setEditingCostIndex] = useState(null);
-    const [newCost, setNewCost] = useState('');
-    const [editingTimeIndex, setEditingTimeIndex] = useState(null);
-    const [newStartTime, setNewStartTime] = useState('10:00');
-    const [newEndTime, setNewEndTime] = useState('12:00');
-    const [kakaoMapLoaded, setKakaoMapLoaded] = useState(false);
-
+    const [editingCostIndex, setEditingCostIndex] = useState(null); // New state for cost editing
+    const [newCost, setNewCost] = useState(''); // New state for the input value
+    const [editingTimeIndex, setEditingTimeIndex] = useState(null);  // New state for time editing
+    const [newStartTime, setNewStartTime] = useState('10:00');  // Initial start time value
+    const [newEndTime, setNewEndTime] = useState('12:00');  // Initial end time value
+    
     useEffect(() => {
-        // Function to load Kakao Maps API script
-        const loadKakaoMapScript = () => {
-            return new Promise((resolve, reject) => {
-                if (window.kakao && window.kakao.maps) {
-                    resolve();
-                } else {
-                    const script = document.createElement('script');
-                    script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_API_KEY";
-                    script.onload = () => resolve();
-                    script.onerror = () => reject(new Error('Failed to load Kakao Maps API'));
-                    document.head.appendChild(script);
-                }
-            });
+        const container = document.getElementById('map');
+        const options = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667),
+            level: 3
         };
-
-        loadKakaoMapScript()
-            .then(() => {
-                setKakaoMapLoaded(true);
-            })
-            .catch((error) => console.error(error));
+        new kakao.maps.Map(container, options);
     }, []);
-
-    useEffect(() => {
-        if (kakaoMapLoaded) {
-            const container = document.getElementById('map');
-            if (container) {
-                const options = {
-                    center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-                    level: 3
-                };
-                new window.kakao.maps.Map(container, options);
-            } else {
-                console.error('Map container not found');
-            }
-        }
-    }, [kakaoMapLoaded]);
 
     const location = useLocation();
     const { dates } = location.state || { dates: [] };
@@ -84,11 +55,11 @@ const Map = () => {
 
     const MPage = () => {
         navigate('/');
-    };
+    }
 
     const CalPage = () => {
         navigate('../calendar/Calendar');
-    };
+    }
 
     const toggleCalendar = () => {
         setIsCalendarOpen(!isCalendarOpen);
@@ -142,12 +113,12 @@ const Map = () => {
         setIsLocationClicked((prev) => !prev);
     };
 
-    const handleStartTimeChange = (time) => {
-        setNewStartTime(time);
+    const handleStartTimeChange = (e) => {
+        setNewStartTime(e.target.value);
     };
 
-    const handleEndTimeChange = (time) => {
-        setNewEndTime(time);
+    const handleEndTimeChange = (e) => {
+        setNewEndTime(e.target.value);
     };
 
     const handleTimeSubmit = (index, boxIndex) => {
@@ -160,7 +131,7 @@ const Map = () => {
     };
 
     const handleCostClick = (index) => {
-        setEditingCostIndex(editingCostIndex === index ? null : index);
+        setEditingCostIndex(editingCostIndex === index ? null : index); // Toggle editing state
     };
 
     const handleCostChange = (e) => {
@@ -173,12 +144,12 @@ const Map = () => {
             newBoxes[index][boxIndex].cost = newCost;
             return newBoxes;
         });
-        setEditingCostIndex(null);
-        setNewCost('');
+        setEditingCostIndex(null); // Close the input field after submission
+        setNewCost(''); // Reset the input field
     };
 
     return (
-        <div className="kaMap">
+        <div className="kaMap" id="map">
             <div className="MapPage0">
                 <div className="MapNav"></div>
                 <div className="left0">
@@ -216,7 +187,7 @@ const Map = () => {
                         <div className="selected-dates">
                             {plusdate.map((date, index) => (
                                 <div key={index} className="date-item">
-                                    <div className="scedate">
+                                    <div className = 'scedate'>
                                         <div className="scedate1">
                                             DAY{index + 1}
                                         </div>
@@ -238,19 +209,21 @@ const Map = () => {
                                                     </div>
                                                     <hr className="boxline"></hr>
                                                     <div className="boxtime">
-                                                        <FontAwesomeIcon icon={faClock} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
-                                                        {editingTimeIndex === `${index}-${boxIndex}` ? (
+                                                            <FontAwesomeIcon icon={faClock} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
+                                                            {editingTimeIndex === `${index}-${boxIndex}` ? (
                                                             <>
-                                                                <TimePicker
-                                                                    onChange={handleStartTimeChange}
+                                                                <input
+                                                                    type="time"
                                                                     value={newStartTime}
-                                                                    className="time-picker"
+                                                                    onChange={handleStartTimeChange}
+                                                                    className="custom-time-input"
                                                                 />
                                                                 <span> ~ </span>
-                                                                <TimePicker
-                                                                    onChange={handleEndTimeChange}
+                                                                <input
+                                                                    type="time"
                                                                     value={newEndTime}
-                                                                    className="time-picker"
+                                                                    onChange={handleEndTimeChange}
+                                                                    className="custom-time-input"
                                                                 />
                                                                 <button onClick={() => handleTimeSubmit(index, boxIndex)}>
                                                                     확인
@@ -263,7 +236,7 @@ const Map = () => {
                                                         )}
                                                     </div>
                                                     <div className="boxcost">
-                                                        <FontAwesomeIcon icon={faWallet} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
+                                                    <FontAwesomeIcon icon={faWallet} style={{ color: "#5E5E5E", width: "15px", height: "15px", marginRight: "8px"}} />
                                                         {editingCostIndex === `${index}-${boxIndex}` ? (
                                                             <>
                                                                 <input
