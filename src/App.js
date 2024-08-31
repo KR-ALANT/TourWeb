@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './main/MainPage';
 import MyPage from './mypage/MyPage';
+import WritePage from './writepage/WritePage';
 import Local from './local/Local';
 import './App.css';
 import Calendar from './calendar/Calendar';
@@ -17,6 +18,7 @@ function App() {
       <Route path = "/Map" element = {<Map />} />
       <Route path = "/Community" element = {<Community />} />
       <Route path = "/MyPage" element = {<MyPage />} />
+      <Route path = "/WritePage" element = {<WritePage />} />
     </Routes>
   )
 }
