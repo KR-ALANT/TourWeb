@@ -65,16 +65,6 @@ function Community() {
     filterCards(searchText);
   };
 
-  const handleLatestClick = () => {
-    console.log('Latest clicked');
-    // Implement sorting by latest
-  };
-
-  const handlePopularClick = () => {
-    console.log('Popular clicked');
-    // Implement sorting by popular
-  };
-
   const cardsRef = useRef(null); // cards1 요소에 접근하기 위한 참조
   const scrollAmount = useRef(0); // 현재 스크롤 속도/양을 저장하기 위한 ref
 
@@ -114,7 +104,29 @@ function Community() {
   const handleCardClick = (id) => {
     navigate(`/card/${id}`);
   };
+
+   // 최신순 정렬 함수
+  const sortCardsByDate = () => {
+    const sortedCards = [...filteredCards].sort((a, b) => new Date(b.postdata) - new Date(a.postdata));
+    setFilteredCards(sortedCards);
+  };
+
+  // 최신순 버튼 클릭 핸들러
+  const handleLatestClick = () => {
+    sortCardsByDate();
+  };
   
+  // 인기순 정렬 함수
+  const sortCardsByPopularity = () => {
+    const sortedCards = [...filteredCards].sort((a, b) => b.scrapCount - a.scrapCount);
+    setFilteredCards(sortedCards);
+  };
+
+   // 인기순 버튼 클릭 핸들러
+  const handlePopularClick = () => {
+    sortCardsByPopularity();
+  };
+
   return (
     <div className="App">
       <div className = "left">
