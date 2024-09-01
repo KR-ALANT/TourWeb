@@ -8,6 +8,7 @@ import './App.css';
 import Calendar from './calendar/Calendar';
 import Map from './map/Map';
 import Community from './community/Community';
+import CardDetail from './community/CardDetail';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path = "/Community" element = {<Community />} />
       <Route path = "/MyPage" element = {<MyPage />} />
       <Route path = "/WritePage" element = {<WritePage />} />
+      <Route path="/card/:id" element={<CardDetail />} />
     </Routes>
   )
 }

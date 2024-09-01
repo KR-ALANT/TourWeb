@@ -111,6 +111,10 @@ function Community() {
     };
   }, []);
 
+  const handleCardClick = (id) => {
+    navigate(`/card/${id}`);
+  };
+  
   return (
     <div className="App">
       <div className = "left">
@@ -161,7 +165,7 @@ function Community() {
 
           <div className="cards1" ref={cardsRef}>
             {filteredCards.map(card => (
-              <div className="card2" key={card.id}>
+              <div className="card2" key={card.id} onClick={() => handleCardClick(card.id)}>
                 <div className="card-header">
                   <img src={card.profileImage} className="profile-image" alt="profile" />
                   <span className="card-title">{card.title}</span>

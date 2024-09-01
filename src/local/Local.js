@@ -23,6 +23,10 @@ function Loacl() {
     navigate('../Community')
   }
 
+  const goMyPage = () => {
+    navigate('../MyPage')
+  }
+
   const [query, setQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -159,7 +163,7 @@ function Loacl() {
       <div className = "right-L">
         <div className = "top-right-buttons-L">
           <button className="community-button" onClick={goCommunity}>커뮤니티</button>
-          <button className="my-page-button">마이페이지</button>
+          <button className="my-page-button" onClick={goMyPage}>마이페이지</button>
           <button className="kakao-login-button">카카오 로그인</button>
         </div>
         <button className="next" disabled={!nextButtonEn} onClick={nextPage}>
