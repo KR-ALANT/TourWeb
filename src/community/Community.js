@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import './Community.css';
 import { Cards } from "./cards";
@@ -13,6 +13,10 @@ function Community() {
 
   const goCommunity = () => {
     navigate('../Community')
+  }
+
+  const goMyPage = () => {
+    navigate('../MyPage')
   }
   
   // Initialize state with the cards data
@@ -61,14 +65,66 @@ function Community() {
     filterCards(searchText);
   };
 
-  const handleLatestClick = () => {
-    console.log('Latest clicked');
-    // Implement sorting by latest
+  const cardsRef = useRef(null); // cards1 요소에 접근하기 위한 참조
+  const scrollAmount = useRef(0); // 현재 스크롤 속도/양을 저장하기 위한 ref
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      if (cardsRef.current) {
+        scrollAmount.current += event.deltaY; // 스크롤 속도 누적
+        smoothScroll(); // 부드러운 스크롤 시작
+      }
+    };
+
+    const smoothScroll = () => {
+      if (cardsRef.current) {
+        const currentScrollTop = cardsRef.current.scrollTop;
+        const targetScrollTop = currentScrollTop + scrollAmount.current;
+        const delta = (targetScrollTop - currentScrollTop) / 10;
+
+        if (Math.abs(delta) > 1) {
+          cardsRef.current.scrollTop += delta;
+          scrollAmount.current -= delta;
+          requestAnimationFrame(smoothScroll);
+        } else {
+          // 남은 스크롤 양이 적을 때 정확한 위치로 설정
+          cardsRef.current.scrollTop = targetScrollTop;
+          scrollAmount.current = 0;
+        }
+      }
+    };
+
+    window.addEventListener('wheel', handleScroll);
+
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, []);
+
+  const handleCardClick = (id) => {
+    navigate(`/card/${id}`);
   };
 
+   // 최신순 정렬 함수
+  const sortCardsByDate = () => {
+    const sortedCards = [...filteredCards].sort((a, b) => new Date(b.postdata) - new Date(a.postdata));
+    setFilteredCards(sortedCards);
+  };
+
+  // 최신순 버튼 클릭 핸들러
+  const handleLatestClick = () => {
+    sortCardsByDate();
+  };
+  
+  // 인기순 정렬 함수
+  const sortCardsByPopularity = () => {
+    const sortedCards = [...filteredCards].sort((a, b) => b.scrapCount - a.scrapCount);
+    setFilteredCards(sortedCards);
+  };
+
+   // 인기순 버튼 클릭 핸들러
   const handlePopularClick = () => {
-    console.log('Popular clicked');
-    // Implement sorting by popular
+    sortCardsByPopularity();
   };
 
   return (
@@ -119,9 +175,9 @@ function Community() {
             <span className="popular" onClick={handlePopularClick}>인기순</span>
           </div>
 
-          <div className="cards1">
+          <div className="cards1" ref={cardsRef}>
             {filteredCards.map(card => (
-              <div className="card2" key={card.id}>
+              <div className="card2" key={card.id} onClick={() => handleCardClick(card.id)}>
                 <div className="card-header">
                   <img src={card.profileImage} className="profile-image" alt="profile" />
                   <span className="card-title">{card.title}</span>
@@ -145,7 +201,7 @@ function Community() {
       <div className = "right-Co">
         <div className = "top-right-buttons-Co">
           <button className="community-button" onClick={goCommunity}>커뮤니티</button>
-          <button className="my-page-button">마이페이지</button>
+          <button className="my-page-button" onClick={goMyPage}>마이페이지</button>
           <button className="kakao-login-button">카카오 로그인</button>
         </div>
       </div>
