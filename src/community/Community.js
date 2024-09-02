@@ -18,6 +18,10 @@ function Community() {
   const goMyPage = () => {
     navigate('../MyPage')
   }
+
+  const goWritePage = () => {
+    navigate('../WritePage')
+  }
   
   // Initialize state with the cards data
   const [searchText, setSearchText] = useState('');
@@ -204,6 +208,9 @@ function Community() {
           <button className="my-page-button" onClick={goMyPage}>마이페이지</button>
           <button className="kakao-login-button">카카오 로그인</button>
         </div>
+      </div>
+      <div className="writeButton">
+        <img className="addPost" onClick={goWritePage} src={process.env.PUBLIC_URL + '/add_post.png'}/>
       </div>
     </div>
   );

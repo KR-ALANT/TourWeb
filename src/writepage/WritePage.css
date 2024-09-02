@@ -10,8 +10,7 @@
   
   /* 배경 역할을 하는 컨테이너 */
   .editor-container {
-    width: 100%;
-    max-width: 1200px; /* 최대 너비 설정 */
+    width: 1087px;
     margin: 30px auto; /* 자동 수평 정렬 및 위쪽 마진 설정 */
     padding: 20px;
     background-color: white;
@@ -41,18 +40,16 @@
   }
   
   /* 푸터 */
-  .footer {
+  .WP_footer {
     display: flex;
     justify-content: flex-end; /* 푸터 내 콘텐츠 왼쪽 정렬 */
     align-items: center;
     padding: 10px 20px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     position: fixed; /* 고정 위치 설정 */
     bottom: 0; /* 화면 하단에 고정 */
     left: 0;
     width: 100%;
-    z-index: 1000; /* 푸터를 최상위로 설정 */
+    z-index: 3; /* 푸터를 최상위로 설정 */
   }
   
   /* 액션 버튼 컨테이너 */
@@ -61,6 +58,7 @@
     justify-content: flex-start; /* 액션 버튼을 왼쪽 정렬 */
     gap: 10px; /* 버튼 간의 간격 설정 */
     margin-right: 80px;
+    margin-bottom: 10px;
   }
   
   /* 버튼 공통 스타일 */
@@ -90,10 +88,11 @@
   }
   
   /* 반응형 디자인 */
+  /*
   @media (max-width: 768px) {
     .editor-container {
       width: 100%;
       padding: 10px;
     }
   }
-  
+  */

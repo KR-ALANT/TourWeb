@@ -306,4 +306,13 @@ body {
   margin-right: 8px;
 }
 
-
+.addPost{
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  bottom: 8%;
+  right: 6%;
+  border-radius: 100%;
+  cursor: pointer;
+  z-index: 3;
+}
