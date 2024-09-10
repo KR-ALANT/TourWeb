@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Quill의 스타일 불러오기
+import { useNavigate } from "react-router-dom";
 import './WritePage.css'; // CSS 파일 임포트
 
 // 커스텀 툴바 모듈 설정
@@ -42,6 +43,11 @@ function handleImageUpload() {
 function WritePage() {
   const [content, setContent] = useState('');
   const quillRef = useRef(null);
+  const navigate = useNavigate();
+
+  const goMyPage = () => {
+    navigate('../MyPage')
+  }
 
   const handleContentChange = (value) => {
     setContent(value);
@@ -64,10 +70,10 @@ function WritePage() {
           modules={modules}
         />
       </div>
-      <div className="footer">
+      <div className="WP_footer">
         <div className="action-buttons">
           <button className="save-button">임시저장</button>
-          <button className="submit-button">완료</button>
+          <button className="submit-button" onClick={goMyPage}>완료</button>
         </div>
       </div>
     </div>
