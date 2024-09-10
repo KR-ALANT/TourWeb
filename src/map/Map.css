@@ -478,12 +478,146 @@
     left: 350px;
 }
 
+.tourist-spot{
+    position: absolute;
+    top: 130px;
+    left: 80px;
+    color: #5E5E5E;
+    font-size: 12px;
+}
+
+.cultural{
+    position: absolute;
+    top: 130px;
+    left: 130px;
+    color: #5E5E5E;
+    font-size: 12px;  
+}
+
+.restaurant{
+    position: absolute;
+    top: 130px;
+    left: 190px;
+    color: #5E5E5E;
+    font-size: 12px; 
+}
+
+.traveling-course{
+    position: absolute;
+    top: 130px;
+    left: 240px;
+    color: #5E5E5E;
+    font-size: 12px;
+}
+
+.leports{
+    position: absolute;
+    top: 150px;
+    left: 80px;
+    color: #5E5E5E;
+    font-size: 12px; 
+}
+
+.festivities{
+    position: absolute;
+    top: 150px;
+    left: 130px;
+    color: #5E5E5E;
+    font-size: 12px;  
+}
+
+
+.lodge{
+    position: absolute;
+    top: 150px;
+    left: 210px;
+    color: #5E5E5E;
+    font-size: 12px; 
+}
+
+.shopping{
+    position: absolute;
+    top: 150px;
+    left: 250px;
+    color: #5E5E5E;
+    font-size: 12px; 
+}
+
 .searchresult{
     position: absolute;
-    top: 165px;
+    top: 180px;
     left: 80px;
     color: #5E5E5E;
     font-size: 13px;
+}
+
+.resultbox{
+    position: absolute;
+    top: 210px;
+    left: 80px;
+    width: 347px;
+    height: 400px;
+    overflow-y:auto;
+    -ms-overflow-style: none;
+}
+
+.resultbox::-webkit-scrollbar{
+    display:none;
+}
+  
+.allapiresult{
+    font-size: 14px;
+    
+}
+
+.apiresult{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.apititle{
+    padding-left: 10px;
+}
+
+.selplace{
+    position: absolute;
+    top: 630px;
+    left: 80px;
+    color: #5E5E5E;
+    font-size: 13px;
+}
+
+.selresult{
+    position: absolute;
+    top: 650px;
+    left: 80px;
+}
+
+.selapiresult{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selapi{
+    padding-left: 10px;
+}
+
+.selectplace{
+    position:absolute;
+    top: 740px;
+    left: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.0rem;
+    color: #3E3E3E;
+    border: 0px;
+    border-radius: 5px;
+    width: 60px;
+    height: 30px;
+    background-color: #C5E9FF;
 }
 
 .time-picker {
