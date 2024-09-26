@@ -1,4 +1,4 @@
-import { faCarSide, faPlus, faCircle, faCirclePlus, faLocationDot, faWallet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCarSide, faPlus, faMinus, faCircle, faCirclePlus, faCircleMinus, faLocationDot, faWallet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
@@ -27,8 +27,7 @@ function Map() {
     const [displayedLocations, setDisplayedLocations] = useState([]);
     const { dates } = location.state || { dates: [] };
     const [selectedLocation, setSelectedLocation] = useState(null);
-    const [isSelectButtonActive, setIsSelectButtonActive] = useState(false);
-
+    const [openBoxes, setOpenBoxes] = useState([]);
 
      // 지도 설정 및 마커 추가
      useEffect(() => {
@@ -87,40 +86,31 @@ function Map() {
 
     // 클릭한 관광지를 최상단으로 올리는 함수
     const handleLocationSelect = (location) => {
-        setSelectedLocation(location);
-        setIsSelectButtonActive(true); // 선택 버튼 활성화
+        setBoxes((prevBoxes) => {
+            const newBoxes = { ...prevBoxes };
+    
+            // activePlusButton에 저장된 인덱스를 사용하여 올바른 box에 location을 추가
+            const { dateIndex, boxIndex } = activePlusButton;
+    
+            // 해당 날짜에 box가 없을 경우, 빈 배열을 추가
+            if (!newBoxes[dateIndex]) {
+                newBoxes[dateIndex] = [];
+            }
+    
+            // box가 없을 경우 초기화
+            if (!newBoxes[dateIndex][boxIndex]) {
+                newBoxes[dateIndex][boxIndex] = { location: '', time: '', cost: '' };
+            }
+    
+            // 선택된 location을 해당 box에 추가
+            newBoxes[dateIndex][boxIndex].location = location.title;
+    
+            return newBoxes;
+        });
+    
+        setIsLocationClicked(false); // 장소 선택 UI 닫기
+        setActivePlusButton({ dateIndex: null, boxIndex: null }); // 선택 상태 초기화
     };
-
-    const handleSelectButtonClick = () => {
-        // 선택된 장소가 있고, plus 버튼이 눌린 상태에서만 동작
-        if (selectedLocation && activePlusButton.dateIndex !== null && activePlusButton.boxIndex !== null) {
-          // boxes가 배열로 설정되어 있는지 확인하고, 아닌 경우 빈 배열로 설정
-          const updatedBoxes = Array.isArray(boxes) ? [...boxes] : [];
-      
-          // 선택된 날짜에 대한 박스 배열이 없으면 빈 배열로 초기화
-          if (!updatedBoxes[activePlusButton.dateIndex]) {
-            updatedBoxes[activePlusButton.dateIndex] = [];
-          }
-      
-          // activePlusButton으로 선택된 boxIndex에 해당하는 박스가 없다면 새 박스를 추가
-          if (!updatedBoxes[activePlusButton.dateIndex][activePlusButton.boxIndex]) {
-            updatedBoxes[activePlusButton.dateIndex].push({
-              location: '',
-              time: '',
-              cost: ''
-            });
-          }
-      
-          // 선택된 박스의 location을 selectedLocation.title로 업데이트
-          updatedBoxes[activePlusButton.dateIndex][activePlusButton.boxIndex].location = selectedLocation.title;
-      
-          // boxes 상태 업데이트
-          setBoxes(updatedBoxes);
-      
-          // 장소 선택 UI 닫기
-          setIsLocationClicked(false);
-        }
-      };
 
     const Tourist = () => {
         const url = 'https://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=0rLD0TFj0icKbvkAhD7FCbp4cpdmpBTY7OeAsTGEFkpcORZxcQ5AMHzf%2FgR75mQ3NSo5rIC7WwZJknCi9TcKFg%3D%3D&numOfRows=64&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&mapX=126.981611&mapY=37.568477&radius=1000&contentTypeId=12';
@@ -162,8 +152,6 @@ function Map() {
         fetchData(url)
     };
 
-    
-
     useEffect(() => {
         if (dates.length === 1) {
             setSelectedDate(new Date(dates[0]));
@@ -187,7 +175,7 @@ function Map() {
     }
 
     const CalPage = () => {
-        navigate('../calendar/Calendar');
+        navigate('../Calendar');
     }
 
     const toggleCalendar = () => {
@@ -215,6 +203,18 @@ function Map() {
         });
     };
 
+    const handleRemoveBox = (index) => {
+        const updatedPlusdate = plusdate.filter((_, i) => i !== index);
+        setPlusdate(updatedPlusdate);
+    
+        // boxes 객체에서 해당 index의 항목을 삭제
+        setBoxes((prevBoxes) => {
+            const newBoxes = { ...prevBoxes };
+            delete newBoxes[index];
+            return newBoxes;
+        });
+    };
+
     const generateDateRange = (start, end) => {
         const dateArray = [];
         let currentDate = new Date(start);
@@ -235,6 +235,17 @@ function Map() {
         if (!boxes[dateIndex]) {
           setBoxes([...boxes, { [dateIndex]: [] }]);
         }
+    };
+
+    const handleMinusClick = (dateIndex, boxIndex) => {
+        setBoxes(prevBoxes => {
+            const updatedDateBoxes = [...(prevBoxes[dateIndex] || [])];
+            updatedDateBoxes.splice(boxIndex, 1);
+            return {
+                ...prevBoxes,
+                [dateIndex]: updatedDateBoxes
+            };
+        });
     };
 
     const handleTimeClick = (index) => {
@@ -278,6 +289,16 @@ function Map() {
         setNewCost(''); // Reset the input field
     };
 
+    const toggleBox = (index) => {
+        if (openBoxes.includes(index)) {
+            // 이미 열려 있으면 닫기
+            setOpenBoxes(openBoxes.filter((i) => i !== index));
+        } else {
+            // 닫혀 있으면 열기
+            setOpenBoxes([...openBoxes, index]);
+        }
+    };
+
     return (
         <div className="kaMap" id="map" style={{ width: '100%', height: '500px' }}>
             <div className="MapPage0">
@@ -315,19 +336,25 @@ function Map() {
                             </div>
                         </div>
                         <div className="selected-dates">
+                        <div className="scrollable-container">
                             {plusdate.map((date, index) => (
                                 <div key={index} className="date-item">
-                                    <div className = 'scedate'>
+                                    <div className = 'scedate' onClick={() => toggleBox(index)}>
                                         <div className="scedate1">
                                             DAY{index + 1}
                                         </div>
                                         <div className="scedate2">
                                             {formatDate(date)}
                                         </div>
-                                        <button className="sceplus" onClick={() => handleAddBox(index)}>
-                                            <FontAwesomeIcon icon={faPlus} style={{ color: "#5E5E5E", width: "13px", height: "13px"}} />
+                                        <button className="sceplus" onClick={(e) => {e.stopPropagation(); handleAddBox(index);}}>
+                                            <FontAwesomeIcon icon={faPlus} style={{ color: "#5E5E5E", width: "15px", height: "15px"}} />
                                         </button>
-                                    </div>                   
+                                        <p className="sceslash">/</p>
+                                        <button className="sceminus" onClick={(e) => {e.stopPropagation();  handleRemoveBox(index);}}>
+                                            <FontAwesomeIcon icon={faMinus} style={{ color: "#5E5E5E", width: "15px", height: "15px"}} />
+                                        </button>
+                                    </div>
+                                    {openBoxes.includes(index) && (
                                     <div className="boxes">
                                         {boxes[index] && boxes[index].map((box, boxIndex) => (
                                             <div key={boxIndex} className="bigbox">
@@ -387,21 +414,30 @@ function Map() {
                                                         )}
                                                     </div>   
                                                 </div>
-                                                <button onClick={() => handlePlusClick(index, boxIndex)}>
-                                                    <FontAwesomeIcon icon={faCirclePlus} style={{ color: "#79CAFB", width: "20px", height: "20px"}} />
-                                                </button>
-                                                {activePlusButton.dateIndex === index && activePlusButton.boxIndex === boxIndex && (
-                                                    <div className="plus-options">
-                                                        <button className="oplocation" onClick={handleLocationClick}>장소</button>
-                                                        <button className="optime" onClick={() => handleTimeClick(`${index}-${boxIndex}`)}>시간</button>
-                                                        <button className="opcost" onClick={() => handleCostClick(`${index}-${boxIndex}`)}>비용</button>
+                                                <div className="pl-or-mi">
+                                                    <div>
+                                                        <button onClick={() => handlePlusClick(index, boxIndex)}>
+                                                            <FontAwesomeIcon icon={faCirclePlus} style={{ color: "#79CAFB", width: "20px", height: "20px"}} />
+                                                        </button>
+                                                        {activePlusButton.dateIndex === index && activePlusButton.boxIndex === boxIndex && (
+                                                            <div className="plus-options">
+                                                                <button className="oplocation" onClick={handleLocationClick}>장소</button>
+                                                                <button className="optime" onClick={() => handleTimeClick(`${index}-${boxIndex}`)}>시간</button>
+                                                                <button className="opcost" onClick={() => handleCostClick(`${index}-${boxIndex}`)}>비용</button>
+                                                            </div>
+                                                        )}
                                                     </div>
-                                                )}
+                                                    <button onClick={() => handleMinusClick(index, boxIndex)}>
+                                                        <FontAwesomeIcon icon={faCircleMinus} style={{ color: "#79CAFB", width: "20px", height: "20px"}} />
+                                                    </button>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
+                                    )}
                                 </div>
                             ))}
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -445,34 +481,6 @@ function Map() {
                                         ))}
                                     </ul>
                                 </div>
-                                <p className="selplace">선택된 장소</p>
-                                <div className="selresult">
-                                    {selectedLocation ? (
-                                        <div className="selapiresult">
-                                            {selectedLocation.firstimage ? (
-                                                <img src={selectedLocation.firstimage} alt={selectedLocation.title} style={{ width: '80px', height: 'auto' }} />
-                                            ) : selectedLocation.firstimage2 ? (
-                                                <img src={selectedLocation.firstimage2} alt={selectedLocation.title} style={{ width: '80px', height: 'auto' }} />
-                                            ) : (
-                                                <p>이미지가 없습니다.</p>
-                                            )}
-                                            <div className="selapi">
-                                                <h4>{selectedLocation.title}</h4>
-                                                <p>{selectedLocation.addr1}</p>
-                                                <p>{selectedLocation.overview}</p>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                    <p>마커를 클릭하면 해당 관광지 정보가 여기에 표시됩니다.</p>
-                                    )}
-                                </div>
-                                <button 
-          className={`selectplace ${isSelectButtonActive ? 'active' : ''}`} 
-          onClick={handleSelectButtonClick}
-          disabled={!isSelectButtonActive}
-        >
-          선택
-        </button>
                             </div>
                         </div>
                         <div className={`left-center-back2 ${isLocationClicked ? 'move-right' : ''}`}></div>

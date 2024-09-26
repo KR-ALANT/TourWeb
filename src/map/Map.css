@@ -329,12 +329,22 @@
     position: relative;
     width: 150px;
     top: 130px;
-    left: 78px;
+    left: 10px;
+    margin-top: 20px;
 }
 
-/* 선택된 날짜들의 스타일 */
-.selected-dates {
-    margin-top: 20px;
+.scrollable-container {
+    width: 405px;
+    max-height: 530px; /* 원하는 높이로 설정 */
+    overflow-y: auto;  /* 세로 스크롤 활성화 */
+    
+    -ms-overflow-style: none;
+    opacity: 1;
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none;
+    
 }
 
 .date-item {
@@ -344,12 +354,16 @@
 
 .scedate{
     display: flex;
-    justify-content: center;
     align-items: center;
     padding-bottom: 3px;
     padding-top: 10px;
-    width: 290px;
+    width: 398px;
     border-bottom: 1px solid #707070;
+}
+
+.scedate:hover{
+    box-shadow: 4px 3px 9px #00000029;
+    border-radius: 8px;
 }
 
 .scedate1{
@@ -375,20 +389,58 @@
 
 .sceplus{
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 130px;
+    margin-left: 205px;
+    height: 15px;
+    color:#5E5E5E;
+}
+
+.sceplus:hover{
+    width: 15px;
+    height: 15px;
+    border: 1px solid;
+    border-radius: 60px;
+}
+
+.sceslash{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.sceminus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    color: #5E5E5E;
+
+}
+
+.sceminus:hover{
+    width: 15px;
+    height: 15px;
+    border: 1px solid;
+    border-radius: 60px;
+}
+
+.pl-or-mi{
+    display: block;
+    align-items: center;
+    margin-left: 10p;
 }
 
 .boxes{
     display: block;
-
 }
 
 .bigbox{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 320px;
+    width: 260px;
     padding-top: 15px;
     padding-bottom: 5px;
 
@@ -396,7 +448,7 @@
 
 .smallbox{
     display: block;
-    width: 250px;
+    width: 300px;
     border: 1px solid #7070704D;
     border-radius: 20px;
 }
@@ -433,8 +485,9 @@
 }
 
 .plus-options{
-    position: absolute;
-    left: 330px;
+    position: relative;
+    left: 230px;
+    top: 15px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -444,6 +497,8 @@
     border: 1px solid #7070700D;
     border-radius: 34px;
     box-shadow: 0px 2px 2px #00000029;
+    margin-top: -40px;
+    margin-left: -200px;
 }
 
 .oplocation{
@@ -526,7 +581,6 @@
     font-size: 12px;  
 }
 
-
 .lodge{
     position: absolute;
     top: 150px;
@@ -556,7 +610,7 @@
     top: 210px;
     left: 80px;
     width: 347px;
-    height: 400px;
+    height: 520px;
     overflow-y:auto;
     -ms-overflow-style: none;
 }
@@ -577,30 +631,6 @@
 }
 
 .apititle{
-    padding-left: 10px;
-}
-
-.selplace{
-    position: absolute;
-    top: 630px;
-    left: 80px;
-    color: #5E5E5E;
-    font-size: 13px;
-}
-
-.selresult{
-    position: absolute;
-    top: 650px;
-    left: 80px;
-}
-
-.selapiresult{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.selapi{
     padding-left: 10px;
 }
 
