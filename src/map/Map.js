@@ -30,6 +30,7 @@ function Map() {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [openBoxes, setOpenBoxes] = useState([]);
 
+  
   // 지도 설정 및 마커 추가
   useEffect(() => {
     const mapContainer = document.getElementById('map');
@@ -108,7 +109,7 @@ function Map() {
       });
   };
 
-    // 클릭한 관광지를 최상단으로 올리는 함수
+  // 클릭한 관광지를 최상단으로 올리는 함수
   const handleLocationSelect = (location) => {
     setBoxes((prevBoxes) => {
       const newBoxes = { ...prevBoxes };
@@ -199,6 +200,18 @@ function Map() {
   const CalPage = () => {
     navigate('../Calendar');
   }
+
+  const MyPage = () => {
+    navigate('/MyPage'); // 마이페이지 버튼 클릭 시 MyPage 페이지로 이동
+  };
+
+  const Community = () => {
+    navigate('../Community')
+  }
+
+  const KakaoLogin = () => {
+    window.location.href = 'https://kauth.kakao.com/oauth/authorize'; // 카카오 로그인 버튼 클릭 시 카카오 로그인 페이지로 이동
+  };
 
   const toggleCalendar = () => {
     setIsCalendarOpen(!isCalendarOpen);
@@ -465,12 +478,26 @@ function Map() {
               <div className="triplocation">
                 <div className="tripinput">
                   <input
+                    type="text"
                     className="tripsearch"
                     placeholder="여행지를 입력해 주세요"
                   />
                   <button className="magnifyingglass">
                     <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#5E5E5E", width: "18px", height: "18px"}} />
                   </button>
+                  <ul className="search-results">
+                    {locations.length > 0 ? (
+                      locations.map((location, index) => (
+                        location && location.place_name ? (
+                          <li key={index} className="location-item">
+                            {location.place_name} - {location.address_name}
+                          </li>
+                        ) : null
+                      ))
+                    ) : (
+                      <p>No locations found</p>
+                    )}
+                  </ul>
                 </div>
                 <button className="tourist-spot" onClick={Tourist}>관광지</button>
                 <button className="cultural" onClick={Cultural}>문화시설</button>
@@ -525,9 +552,9 @@ function Map() {
         <div className="right0">
           <div className="top-right0">
             <div className="top-right-buttons0">
-              <button className="community-button0">커뮤니티</button>
-              <button className="my-page-button0">마이페이지</button>
-              <button className="kakao-login-button0">카카오 로그인</button>
+              <button className="community-button0" oncLcick={Community}>커뮤니티</button>
+              <button className="my-page-button0" onClick={MyPage}>마이페이지</button>
+              <button className="kakao-login-button0" oncLcick={KakaoLogin}>카카오 로그인</button>
             </div>
             <button className="save-button0">
               <p className="save0">저장하기</p>

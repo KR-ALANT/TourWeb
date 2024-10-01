@@ -199,6 +199,18 @@ function Calendar() {
     navigate("../local/Local")
   }
 
+  const MyPage = () => {
+    navigate('/MyPage'); // 마이페이지 버튼 클릭 시 MyPage 페이지로 이동
+  };
+
+  const Community = () => {
+    navigate('../Community')
+  }
+
+  const KakaoLogin = () => {
+    window.location.href = 'https://kauth.kakao.com/oauth/authorize'; // 카카오 로그인 버튼 클릭 시 카카오 로그인 페이지로 이동
+  };
+
   return (
     <div className="CalendarPage">
       {/*로고, 이전 버튼*/}
@@ -304,9 +316,9 @@ function Calendar() {
       {/*이전 버튼, 다음 버튼*/}
       <div className = "right-Ca">
         <div className = "top-right-buttons-Ca">
-          <button className="community-button">커뮤니티</button>
-          <button className="my-page-button">마이페이지</button>
-          <button className="kakao-login-button">카카오 로그인</button>
+          <button className="community-button" onClick={Community}>커뮤니티</button>
+          <button className="my-page-button" onClick={MyPage}>마이페이지</button>
+          <button className="kakao-login-button" oncLcick={KakaoLogin}>카카오 로그인</button>
         </div>
         <button className="next" disabled={!nextButtonEn} onClick={nextPage}>
           <p className = "next-button">
