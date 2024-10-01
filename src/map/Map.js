@@ -552,12 +552,12 @@ function Map() {
         <div className="right0">
           <div className="top-right0">
             <div className="top-right-buttons0">
-              <button className="community-button0" oncLcick={Community}>커뮤니티</button>
+              <button className="community-button0" onClick={Community}>커뮤니티</button>
               <button className="my-page-button0" onClick={MyPage}>마이페이지</button>
-              <button className="kakao-login-button0" oncLcick={KakaoLogin}>카카오 로그인</button>
+              <button className="kakao-login-button0" onClick={KakaoLogin}>카카오 로그인</button>
             </div>
             <button className="save-button0">
-              <p className="save0">저장하기</p>
+              <p className="save0" onClick={KakaoLogin}>저장하기</p>
             </button>
           </div>
         </div>

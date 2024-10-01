@@ -318,7 +318,7 @@ function Calendar() {
         <div className = "top-right-buttons-Ca">
           <button className="community-button" onClick={Community}>커뮤니티</button>
           <button className="my-page-button" onClick={MyPage}>마이페이지</button>
-          <button className="kakao-login-button" oncLcick={KakaoLogin}>카카오 로그인</button>
+          <button className="kakao-login-button" onClick={KakaoLogin}>카카오 로그인</button>
         </div>
         <button className="next" disabled={!nextButtonEn} onClick={nextPage}>
           <p className = "next-button">
